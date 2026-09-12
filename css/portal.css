@@ -131,8 +131,10 @@
   justify-content: center;
   gap: .34em;
   white-space: nowrap;
-  font-family: var(--font-display);
-  font-weight: 800;
+  /* --font-brand, not --font-display: this is the wordmark, so it
+     takes the logo's serif rather than the body face. */
+  font-family: var(--font-brand);
+  font-weight: 700;
   /* No-JS fallback only. js/portal.js measures the title and solves
      for the size that spans 86% of the viewport when closed, so this
      value is overridden inline on every JS-capable load. */

@@ -85,7 +85,9 @@
   --font-sans:    'Vonca', 'Jost', -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-script:  'Bangeline', 'Pinyon Script', cursive;
   --font-edit:    var(--font-script);
-  --font-brand:   var(--font-display);
+  /* The wordmark only. Matches the serif in assets/logo-full.png so
+     the typeset name and the logo image read as the same brand. */
+  --font-brand:   'Playfair Display', 'Vonca', Georgia, serif;
   --font-mono:    var(--font-sans);
 
   /* Fluid scale */
