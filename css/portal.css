@@ -199,6 +199,40 @@
   align-items: end;
   gap: clamp(1.5rem, 4vw, 4rem);
 }
+/* ── The lockup, set as type ─────────────────────────────────
+   Opens the text content once the portal animation is done. Same
+   order as the logo file: name over tagline.
+
+   The name uses --font-brand, so it is the same serif as the
+   wordmark in logo-full.png and the header. Tracking is wide to
+   match the logo's letter-spacing rather than the tight setting
+   the display face uses for headlines. The tagline follows
+   .nav__tag's proportions so the lockup reads consistently
+   wherever it appears.                                          */
+.brandline {
+  margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+}
+.brandline__name {
+  font-family: var(--font-brand);
+  font-size: clamp(1.6rem, 5vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-indent: .18em;        /* balance the trailing letter-space */
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0;
+}
+.brandline__tag {
+  margin: .5rem 0 0;
+  font-family: var(--font-sans);
+  font-size: clamp(.56rem, 1.5vw, .78rem);
+  font-weight: 300;
+  letter-spacing: .34em;
+  text-indent: .34em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
 .portal__lead { max-width: 40ch; }
 
 /* ── The creed ───────────────────────────────────────────────
