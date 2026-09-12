@@ -388,6 +388,12 @@
     --pad-x:    1.05rem;
   }
   .deckcard__name { font-size: 1.05rem; }
+
+  /* --fs-state drops to 25.6px here, and the home statement's own
+     floor is 24px — near enough to read as the same size, which
+     flattens the hierarchy on the narrowest iPhones (SE, 12/13
+     mini, both 375px). Step it down with them. */
+  .creed { font-size: 1.3rem; }
 }
 
 /* ── Headings with their own hard-coded floors ──────────────
