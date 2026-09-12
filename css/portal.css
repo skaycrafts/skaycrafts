@@ -185,29 +185,6 @@
 }
 
 
-/* ── The creed ───────────────────────────────────────────────
-   Closes the home band: lead -> actions -> facts -> why we do it.
-   Set in the display face rather than body copy so it reads as a
-   statement of intent, but a step down from .statement so it does
-   not compete with the section headlines further down the page.
-   Sits above its own rule, matching how .portal__facts is ruled
-   off from the lead.                                            */
-.creed {
-  margin-top: clamp(1.6rem, 4vw, 2.6rem);
-  padding-top: clamp(1.4rem, 3.5vw, 2.2rem);
-  border-top: 1px solid var(--rule);
-}
-.creed p {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2.4vw, 1.75rem);
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: var(--track-tight);
-  color: var(--ink);
-  max-width: 34ch;
-  text-wrap: balance;
-}
-
 /* ── Below-portal intro band ───────────────────────────────── */
 .portal__after {
   position: relative;
@@ -221,6 +198,25 @@
   gap: clamp(1.5rem, 4vw, 4rem);
 }
 .portal__lead { max-width: 40ch; }
+
+/* ── The creed ───────────────────────────────────────────────
+   The opening statement of the home band. Set in the display
+   face rather than body copy so it reads as a position, not a
+   description — but a step below .statement so it does not
+   compete with the section headlines further down the page.
+   It shares the grid row with .portal__cta, so it carries no
+   rule or top margin of its own; .portal__afterGrid aligns the
+   two on their baselines.                                      */
+.creed {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+  max-width: 26ch;
+  text-wrap: balance;
+}
 .portal__cta { display: flex; gap: .7rem; flex-shrink: 0; }
 
 .portal__facts {
