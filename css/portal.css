@@ -253,7 +253,10 @@
   max-width: 38ch;
   text-wrap: balance;
 }
-.portal__cta { display: flex; gap: .7rem; flex-shrink: 0; }
+/* Stays a row at every width. The pair needs 288px against 342px
+   of container at 375px — the narrowest iPhone — so there is 54px
+   of slack; flex-wrap is the safety net if the labels ever grow. */
+.portal__cta { display: flex; flex-wrap: wrap; gap: .7rem; flex-shrink: 0; }
 
 .portal__facts {
   display: flex;
@@ -281,9 +284,6 @@
 @media (max-width: 900px) {
   .portal { --portal-h: 220svh; }
   .portal__afterGrid { grid-template-columns: 1fr; align-items: start; }
-}
-@media (max-width: 560px) {
-  .portal__cta { flex-direction: column; align-items: flex-start; }
 }
 
 /* ── Reduced motion ─────────────────────────────────────────
