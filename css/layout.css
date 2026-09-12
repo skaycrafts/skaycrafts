@@ -1,0 +1,426 @@
+/* ============================================================
+   LAYOUT — shell, global chrome, navigation, footer
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--sec-y);
+  overflow-x: clip;          /* contains the bled ghost numerals */
+}
+.section > .container { position: relative; z-index: 1; }
+
+/* Hairline between stacked sections */
+.section + .section::before,
+.process + .section::before {
+  content: "";
+  position: absolute;
+  inset-inline: var(--pad-x);
+  top: 0;
+  height: 1px;
+  background: var(--rule-soft);
+}
+
+/* ── Film grain ────────────────────────────────────────────── */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: .025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grainShift 7s steps(6) infinite;
+  will-change: transform;
+}
+
+/* ── Scroll progress ───────────────────────────────────────── */
+.scrollbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  z-index: calc(var(--z-nav) + 1);
+  pointer-events: none;
+  background: var(--rule-soft);
+}
+.scrollbar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: var(--accent-deep);
+}
+
+/* ── Custom cursor (fine pointers only) ────────────────────── */
+.cursor { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor {
+    display: block;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: var(--z-cursor);
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+  .cursor__dot,
+  .cursor__ring {
+    position: absolute;
+    top: 0; left: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .cursor__dot {
+    width: 5px; height: 5px;
+    background: #fff;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .cursor__ring {
+    width: 30px; height: 30px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    display: grid;
+    place-items: center;
+    transition:
+      width .4s var(--ease-out),
+      height .4s var(--ease-out),
+      background-color .4s var(--ease-out),
+      border-color .4s var(--ease-out);
+  }
+  .cursor__label {
+    font-family: var(--font-mono);
+    font-size: .55rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-style: normal;
+    opacity: 0;
+    transform: scale(.7);
+    transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .cursor.is-hover .cursor__ring {
+    width: 52px; height: 52px;
+    background: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .8);
+  }
+  .cursor.is-hover .cursor__dot { opacity: 0; }
+
+  .cursor.is-view .cursor__ring {
+    width: 92px; height: 92px;
+    background: rgba(255, 255, 255, .94);
+    border-color: transparent;
+  }
+  .cursor.is-view .cursor__label { opacity: 1; transform: scale(1); color: #000; }
+  .cursor.is-view .cursor__dot { opacity: 0; }
+
+  body.has-cursor,
+  body.has-cursor a,
+  body.has-cursor button,
+  body.has-cursor [data-tilt],
+  body.has-cursor [data-magnetic] { cursor: none; }
+  body.has-cursor input,
+  body.has-cursor textarea,
+  body.has-cursor select { cursor: auto; }
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  border-bottom: 1px solid transparent;
+  transition:
+    transform .6s var(--ease-out),
+    opacity .4s var(--ease-out),
+    background-color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 88px;
+  transition: height var(--dur) var(--ease-out);
+}
+
+/* The bar is black on every ground, so its type is always Linen. Over the
+   black hero it reads as one surface; over the Linen body it reads as a
+   deliberate band. Translucent + blurred so content shows through it. */
+.nav {
+  background: rgba(0, 0, 0, .82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.nav.is-stuck {
+  background: rgba(0, 0, 0, .9);
+  border-bottom-color: var(--rule-dark-soft);
+}
+.nav.is-stuck .nav__inner { height: 64px; }
+/* Held above the viewport while the portal hero is on screen. */
+.nav.is-away {
+  transform: translateY(-102%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Brand ─────────────────────────────────────────────────── */
+.nav__brand { display: flex; align-items: center; gap: .8rem; flex-shrink: 0; }
+
+/* Isolates the "SC" mark out of the full stacked lockup image so the
+   nav never shows illegible micro-type. The percentages below are the
+   measured bounding box of the mark inside assets/logo-full.png
+   (1032x589): x 290..784, y 9..387. Re-measure if the file is replaced. */
+.mark {
+  position: relative;
+  display: block;
+  width: 50px;
+  aspect-ratio: 495 / 379;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform var(--dur) var(--ease-out);
+}
+.mark img {
+  position: absolute;
+  width: 208.5%;
+  max-width: none;
+  left: -58.6%;
+  top: -2.4%;
+}
+.mark__fallback {
+  display: none;
+  font-family: var(--font-brand);
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: var(--grad-chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  place-items: center;
+  height: 100%;
+}
+.mark.is-missing img { display: none; }
+.mark.is-missing .mark__fallback { display: grid; }
+.nav__brand:hover .mark { transform: scale(1.05); }
+
+.nav__wordmark { display: flex; flex-direction: column; gap: 3px; line-height: 1; }
+.nav__name {
+  font-family: var(--font-brand);
+  font-size: .92rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  color: var(--on-field);
+}
+.nav__tag {
+  font-size: .44rem;
+  font-weight: 300;
+  letter-spacing: .34em;
+  color: var(--on-field-2);
+}
+
+/* ── Links — numbered, like an index ───────────────────────── */
+.nav__links { display: flex; align-items: center; gap: clamp(.2rem, 1.4vw, 1rem); }
+.nav__links a {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
+  padding: .5rem .6rem;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--on-field-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav__links a i {
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  font-style: normal;
+  letter-spacing: .06em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: .6rem; right: .6rem;
+  bottom: .25rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dur) var(--ease-out);
+}
+.nav__links a:hover,
+.nav__links a.is-active { color: var(--on-field); }
+.nav__links a:hover i,
+.nav__links a.is-active i { opacity: 1; transform: translateY(0); }
+.nav__links a:hover::after,
+.nav__links a.is-active::after { transform: scaleX(1); }
+
+.nav__actions { display: flex; align-items: center; gap: 1rem; }
+
+/* The CTA is a rule-link; on the black bar it needs light type and rule. */
+.nav .linkrule { color: var(--on-field); }
+.nav .linkrule__line { background: var(--rule-dark); }
+.nav .linkrule__line::after { background: var(--accent); }
+
+/* ── Burger ────────────────────────────────────────────────── */
+.burger {
+  display: none;
+  position: relative;
+  width: 42px; height: 42px;
+  border: 1px solid var(--rule-dark);
+  flex-shrink: 0;
+}
+.burger span {
+  position: absolute;
+  left: 50%;
+  width: 16px; height: 1px;
+  background: var(--on-field);
+  transform: translateX(-50%);
+  transition: transform var(--dur) var(--ease-out);
+}
+.burger span:nth-child(1) { top: 17px; }
+.burger span:nth-child(2) { top: 23px; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateX(-50%) translateY(3px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { transform: translateX(-50%) translateY(-3px) rotate(-45deg); }
+
+/* ============================================================
+   FULLSCREEN MENU
+   ============================================================ */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 6rem var(--pad-x) 3rem;
+  background: var(--field);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path .75s var(--ease-inout);
+}
+.menu.is-open { clip-path: inset(0 0 0 0); }
+
+.menu__nav { display: flex; flex-direction: column; }
+.menu__nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: clamp(.5rem, 1.6vh, .95rem) 0;
+  border-bottom: 1px solid var(--rule-dark-soft);
+  font-size: clamp(1.75rem, 7vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  color: var(--on-field-2);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.menu.is-open .menu__nav a {
+  animation: menuIn .6s var(--ease-out) forwards;
+  animation-delay: calc(.15s + var(--i, 0) * .05s);
+}
+.menu__nav a em {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  font-style: normal;
+  letter-spacing: .16em;
+  color: var(--accent);
+}
+.menu__nav a:hover { color: var(--accent); }
+
+.menu__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 2rem;
+  font-size: .88rem;
+  color: var(--on-field-2);
+}
+.menu__foot a:hover { color: var(--accent); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+/* The footer returns to the dark field for the same reason the hero is
+   dark: the lockup is chrome-on-black artwork and needs a dark ground. */
+.footer {
+  position: relative;
+  padding-top: clamp(4rem, 8vw, 6rem);
+  overflow: hidden;
+  background: var(--field);
+  color: var(--on-field-2);
+}
+.footer .mono { color: var(--on-field-2); }
+
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+.footer__brand { display: flex; flex-direction: column; gap: 1rem; }
+.brand-lockup--sm { width: 172px; }
+
+.footer__nav { display: flex; flex-wrap: wrap; gap: .6rem 2rem; }
+.footer__nav a {
+  position: relative;
+  font-size: .92rem;
+  color: var(--on-field);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.footer__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dur) var(--ease-out);
+}
+.footer__nav a:hover { color: var(--accent); }
+.footer__nav a:hover::after { transform: scaleX(1); }
+
+.footer .linkrule { color: var(--on-field); }
+.footer .linkrule__line { background: var(--rule-dark); }
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.6rem;
+  border-top: 1px solid var(--rule-dark-soft);
+}
+
+/* Oversized ghost wordmark bleeding off the bottom edge */
+.footer__wordmark {
+  font-family: var(--font-brand);
+  font-size: clamp(3.5rem, 15.5vw, 15rem);
+  font-weight: 600;
+  letter-spacing: .04em;
+  line-height: .78;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  margin-bottom: -.24em;
+  color: rgba(253, 241, 226, .07);
+}

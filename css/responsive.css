@@ -1,0 +1,555 @@
+/* ============================================================
+   RESPONSIVE — desktop-down overrides + process pinning gate
+   Breakpoints: 1180 · 1024 · 900 · 720 · 560
+   ============================================================ */
+
+/* ── Process: horizontal scroll is the default (touch-friendly);
+      the pinned scroll-driven version is opt-in via .is-pinned,
+      added by js/process.js only on wide, motion-OK viewports. ── */
+.process__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.process__viewport::-webkit-scrollbar { display: none; }
+.step { scroll-snap-align: center; }
+
+@media (min-width: 900px) {
+  .process.is-pinned .process__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .process.is-pinned .process__head { padding-top: 0; }
+  .process.is-pinned .process__viewport {
+    overflow: hidden;
+    scroll-snap-type: none;
+    padding-block: clamp(2rem, 4vw, 3.2rem) 0;
+  }
+  .process.is-pinned .step { scroll-snap-align: none; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   ≤ 1180px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1180px) {
+  .svc { grid-template-columns: var(--margin-col) minmax(0, 1fr); }
+  .svc__desc, .svc__tags { grid-column: 2; }
+  .svc__desc { grid-row: auto; padding-top: .6rem; }
+
+}
+
+/* ════════════════════════════════════════════════════════════
+   ≤ 1024px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .why__grid { grid-template-columns: repeat(2, 1fr); }
+  .why__grid .value:nth-child(2) { border-right: 0; }
+  .why__grid .value:nth-child(-n+2) { border-bottom: 1px solid var(--rule-soft); }
+
+  /* Four pillars in a 3-up grid left Growth orphaned alone on a
+     second row. The panel is still ~870px wide here, so all four
+     fit comfortably in one row; .pillar:last-child already drops
+     the trailing border. */
+  .pillars { grid-template-columns: repeat(4, 1fr); }
+
+  .contact__cta { grid-template-columns: 1fr; align-items: start; }
+  .contact__panel { grid-template-columns: 1fr; }
+  .contact__info {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.8rem 3rem;
+  }
+
+  .about__grid { grid-template-columns: var(--margin-col) 1fr; }
+  .about__title, .about__body { grid-column: 2; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   ≤ 900px — nav collapses, work rows stack
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --margin-col: 0px; }
+
+  .tech__grid { grid-template-columns: 1fr; }
+  .tech__intro { position: static; }
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+  .pillars .pillar:nth-child(2n) { border-right: 0; }
+  .pillars .pillar:nth-child(-n+2) { border-bottom: 1px solid var(--rule-soft); }
+
+  .nav__links,
+  .nav__cta { display: none; }
+  .burger { display: block; }
+  .nav__tag { display: none; }
+
+  .sec { grid-template-columns: auto auto 1fr; gap: 0 .9rem; }
+
+  .about__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about__title, .about__body { grid-column: 1; }
+
+  .svc { grid-template-columns: 2.5rem minmax(0, 1fr); }
+  .svc__num { padding-top: .4rem; }
+
+  .faq__inner { grid-template-columns: 1fr; }
+  .faq__aside { position: static; }
+
+  .founders__grid { grid-template-columns: 1fr; }
+
+}
+
+/* ════════════════════════════════════════════════════════════
+   ≤ 720px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 720px) {
+  /* --sec-y is applied to BOTH edges of every section, so whatever
+     it is set to lands twice at each boundary. At 11vh that was
+     89px + 89px = 179px of empty screen between one section's last
+     line and the next section's first — 22% of a phone viewport,
+     repeated nine times down the page. Halving it keeps the
+     sections clearly separated without the dead scroll. */
+  :root {
+    --sec-y: clamp(2.75rem, 6.5vh, 4rem);
+  }
+
+  /* Stack layers go vertical: the tech list drops under the name */
+  .layer { grid-template-columns: 2.2rem minmax(0, 1fr); }
+  .layer__tech { grid-column: 2; justify-content: flex-start; max-width: none; }
+  .layer:hover { transform: none; }
+
+  /* A clean 2x2: Software | AI over Digital | Growth. The old
+     :last-child rule spanned Growth across both columns, which
+     left Digital stranded alone in the left half of its row. */
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+  .pillars .pillar { border-right: 1px solid var(--rule-soft); }
+  .pillars .pillar:nth-child(2n) { border-right: 0; }
+
+  .why__grid { grid-template-columns: 1fr; }
+  .why__grid .value { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  .why__grid .value:last-child { border-bottom: 0; }
+
+  .qa__q { grid-template-columns: 2rem 1fr auto; gap: .7rem; font-size: 1rem; }
+  .qa__a p { padding-left: 2.7rem; }
+
+  .footer__top { flex-direction: column; gap: 2rem; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: .9rem; }
+
+}
+
+/* ════════════════════════════════════════════════════════════
+   ≤ 560px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 560px) {
+  .form__grid { grid-template-columns: 1fr; }
+
+  .contact__btns { flex-direction: column; align-items: flex-start; }
+
+  .device--phone { width: min(72%, 200px); }
+  .contact__info { flex-direction: column; gap: 1.5rem; }
+}
+
+/* ── Coarse pointers: no hover-only affordances ────────────── */
+@media (hover: none) {
+  .svc:hover .svc__title { transform: none; }
+}
+
+/* ── Print ─────────────────────────────────────────────────── */
+@media print {
+  .nav, .menu, .cursor, .grain, .scrollbar,
+  .ghost, .portal__panel { display: none !important; }
+
+  body { background: #fff; color: #000; }
+  .ital, .why__dim, .why__hot { color: #000; }
+  .qa__a { grid-template-rows: 1fr; }
+  .qa__a p { opacity: 1; transform: none; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE REFINEMENTS
+   Measured against a 375×812 viewport. Each block below fixes a
+   specific defect found on a real phone-sized screen rather than
+   a guessed-at breakpoint.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Portal hero: scroll length ─────────────────────────────
+   portal.css already trims 260svh to 220svh here, but that is
+   still ~2.2 phone screens of scrolling before a single word of
+   content. The doors still open — they just finish sooner, so the
+   hero costs about one and a half screens of thumb travel.
+
+   Set on .portal, not :root: portal.css declares --portal-h on
+   .portal itself, and a value declared on the element always wins
+   over one inherited from :root regardless of source order. */
+@media (max-width: 900px) {
+  .portal { --portal-h: 175svh; }
+}
+@media (max-width: 560px) {
+  .portal { --portal-h: 155svh; }
+}
+
+/* ── Micro type ─────────────────────────────────────────────
+   .68rem lands at 10.9px — under the ~12px floor where uppercase
+   letter-spaced text stops being comfortably readable at arm's
+   length. Lifting the token carries every eyebrow, category and
+   hint label up together, so the type system stays in proportion. */
+@media (max-width: 720px) {
+  :root { --fs-micro: .78rem; }
+}
+
+/* ── Form fields ────────────────────────────────────────────
+   iOS Safari zooms the whole page in whenever a focused field is
+   under 16px, and never zooms back out. 16px is the fix; it is a
+   hard platform threshold, not a preference. */
+@media (max-width: 720px) {
+  .field input,
+  .field textarea,
+  .field select,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select { font-size: 16px; }
+}
+
+/* ── Touch targets ──────────────────────────────────────────
+   Buttons sat at 41px and inline links at 22–33px. 44px is the
+   Apple/Android minimum. Padding does the work so nothing has to
+   change width or break the pill proportions. */
+@media (max-width: 720px) {
+  .btn {
+    min-height: 44px;
+    padding-block: .8rem;
+  }
+
+  /* NOTE: none of these rules may set `display`. Several targets
+     below share a class with something the nav hides at this same
+     breakpoint (.nav__cta is also a .linkrule), and any display
+     value here would override that display:none and put the hidden
+     element back on screen. min-height covers the elements that are
+     already flex; padding covers the inline ones, where vertical
+     padding grows the hit area without disturbing the line box. */
+
+  .linkrule,
+  .deckcard__link {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  /* Contact email and phone are the two links most likely to be
+     tapped in a hurry, and were the smallest on the page. */
+  .link-underline,
+  .contact__info a,
+  .ci__v,
+  .menu__foot a,
+  .footer a[href^="mailto:"],
+  .footer a[href^="tel:"] {
+    padding-block: .72rem;
+  }
+
+  /* Footer nav was a 24px column — the densest set of tap targets
+     on the page, and the one people reach for at the end of a
+     scroll. Padding opens the rows without moving the type. */
+  .footer__nav a { padding-block: .7rem; }
+
+  /* Both nav controls sat just under the line. */
+  .burger { min-width: 44px; min-height: 44px; }
+  .nav__brand { min-height: 44px; }
+}
+
+/* ── Horizontal scrollers ───────────────────────────────────
+   Both the deck and the process rail scroll sideways inside a
+   page that scrolls down. Without containment a swipe that runs
+   past either end chains to the page — or, at the left edge, to
+   the browser's back gesture. */
+.deck,
+.process__viewport {
+  overscroll-behavior-x: contain;
+}
+
+@media (max-width: 720px) {
+  /* 6px indicators are hard to track on a phone; the deck relies
+     on them to show position in a six-card stack. */
+  .deck__dots i { width: 8px; height: 8px; }
+  .deck__dots { gap: 9px; }
+}
+
+/* ── Touch-only affordance copy ─────────────────────────────
+   "use arrow keys" is meaningless without a keyboard. The deck
+   carries both strings and shows whichever matches the input. */
+.deck__hint .hint--touch { display: none; }
+@media (hover: none), (pointer: coarse) {
+  .deck__hint .hint--pointer { display: none; }
+  .deck__hint .hint--touch { display: inline; }
+}
+
+/* ── Section rhythm: residual gaps ──────────────────────────
+   With --sec-y halved above, these are the remaining places
+   where stacked vertical space still measured over ~140px of
+   empty screen on a 375×812 viewport. */
+@media (max-width: 720px) {
+  /* The facts row carried 35px margin + 22px padding above its
+     own rule — 58px of stacked space in a band that is only
+     three short stats tall. */
+  .portal__facts {
+    margin-top: 1.6rem;
+    padding-top: 1.1rem;
+  }
+
+  /* Intro band's top padding is set independently of --sec-y,
+     so it did not come down with the rest. */
+  .portal__after { padding-block: 2.25rem var(--sec-y); }
+
+  /* The process rail sets its own block padding; without this it
+     reads as a wide band of nothing between Tech and Why. */
+  .process__head { padding-top: var(--sec-y); }
+  .process__sticky { padding-bottom: var(--sec-y); }
+}
+
+/* ════════════════════════════════════════════════════════════
+   iPHONE / SAFE AREAS
+   ------------------------------------------------------------
+   index.html sets viewport-fit=cover, which pushes the page into
+   the notch, Dynamic Island and home-indicator regions. Without
+   env(safe-area-inset-*) to pay that back, text slides under the
+   camera housing in landscape and the footer sits beneath the
+   home indicator in portrait. The insets are 0 on every device
+   that has no cutout, so these are safe to apply unconditionally.
+   ════════════════════════════════════════════════════════════ */
+:root {
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+}
+
+.container {
+  padding-inline:
+    calc(var(--pad-x) + var(--safe-l))
+    calc(var(--pad-x) + var(--safe-r));
+}
+
+/* NOTE: no rule for .nav__inner here. That element already carries
+   .container, so it picks up the insets above. An extra
+   padding-inline rule for it would win on source order and wipe
+   out the --pad-x it inherits from .container, flattening the
+   nav against both screen edges. */
+
+.menu {
+  padding:
+    calc(6rem + var(--safe-t))
+    calc(var(--pad-x) + var(--safe-r))
+    calc(3rem + var(--safe-b))
+    calc(var(--pad-x) + var(--safe-l));
+}
+
+/* Home indicator sits over the last ~34px of the viewport. */
+.footer { padding-bottom: var(--safe-b); }
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE TYPE SCALE
+   ------------------------------------------------------------
+   Every fluid size in tokens.css is a clamp() whose vw term is
+   far below its floor at phone widths, so phones always land on
+   the MINIMUM — which was tuned for a comfortable desktop
+   shrink, not for a 375px screen. Headlines were arriving at
+   33.6px and section titles at 25.6px, which is why the page
+   read as oversized. Lowering the floors is what actually moves
+   these; changing the vw term would do nothing here.
+
+   Body copy stops at 15–16px. Below that, paragraphs stop being
+   comfortable and iOS starts offering to zoom.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 720px) {
+  :root {
+    --fs-state: clamp(1.7rem, 7.2vw, 2.1rem);   /* 33.6px -> ~27px */
+    --fs-sm:    clamp(1.35rem, 5.6vw, 1.7rem);  /* 25.6px -> ~21px */
+    --fs-lead:  clamp(.94rem, 4vw, 1rem);       /* 16px   -> ~15px */
+    --fs-micro: .75rem;                         /* 12.5px -> 12px  */
+  }
+
+  .deckcard__name { font-size: clamp(1.1rem, 4.6vw, 1.3rem); }
+  .portal__facts dd { font-size: clamp(1rem, 4.4vw, 1.2rem); }
+  .qa__q { font-size: .95rem; }
+  .value h3, .layer__name { font-size: 1rem; }
+  .lead { line-height: 1.6; }
+}
+
+/* Narrow phones — iPhone SE and the 12/13 mini both sit at 375px
+   wide, the tightest the site has to hold. */
+@media (max-width: 380px) {
+  :root {
+    --fs-state: 1.6rem;
+    --fs-sm:    1.25rem;
+    --pad-x:    1.05rem;
+  }
+  .deckcard__name { font-size: 1.05rem; }
+}
+
+/* ── Headings with their own hard-coded floors ──────────────
+   These six set font-size directly rather than through a token,
+   so the scale above does not reach them. Each was landing on a
+   clamp minimum chosen for desktop: .svc__title at 25.6px and
+   .contact__big at 41.6px were the two doing the most damage on
+   a 375px screen. */
+@media (max-width: 720px) {
+  .svc__title      { font-size: clamp(1.25rem, 5.4vw, 1.6rem); }  /* 25.6 -> ~20 */
+  .contact__big    { font-size: clamp(1.9rem, 8vw, 2.6rem); }     /* 41.6 -> ~30 */
+  .menu__nav a     { font-size: clamp(1.4rem, 6.4vw, 1.75rem); }  /* 28   -> ~24 */
+  .founder__name   { font-size: clamp(1.05rem, 4.6vw, 1.3rem); }  /* 20.8 -> ~17 */
+  .footer__wordmark{ font-size: clamp(2.6rem, 13vw, 3.5rem); }    /* 56   -> ~49 */
+}
+
+@media (max-width: 380px) {
+  .svc__title   { font-size: 1.18rem; }
+  .contact__big { font-size: 1.75rem; }
+  .menu__nav a  { font-size: 1.3rem; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   TOUCH DEVICES — ORIENTATION-INDEPENDENT
+   ------------------------------------------------------------
+   Everything above is gated on max-width, which silently drops
+   the moment a phone is turned sideways: an iPhone in landscape
+   is 844–956px WIDE and only 375–440px tall, so it matched none
+   of the phone breakpoints. That put 15.7px back into the form
+   fields (iOS then zooms on focus and never zooms out) and took
+   28 controls back under the 44px touch minimum.
+
+   Capability, not width, is the correct test for these. Anything
+   driven by a finger gets them in every orientation, on every
+   iPhone released so far and any future size.
+   ════════════════════════════════════════════════════════════ */
+@media (pointer: coarse) {
+  /* The hard iOS threshold. max() keeps any larger authored size. */
+  .field input,
+  .field textarea,
+  .field select,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select { font-size: max(16px, 1rem); }
+
+  :root { --fs-micro: .75rem; }
+
+  .btn { min-height: 44px; padding-block: .8rem; }
+
+  .linkrule,
+  .deckcard__link { min-height: 44px; align-items: center; }
+
+  .link-underline,
+  .contact__info a,
+  .ci__v,
+  .menu__foot a,
+  .footer a[href^="mailto:"],
+  .footer a[href^="tel:"] { padding-block: .72rem; }
+
+  .footer__nav a { padding-block: .7rem; }
+
+  .burger { min-width: 44px; min-height: 44px; }
+  .nav__brand { min-height: 44px; }
+
+  .deck__dots i { width: 8px; height: 8px; }
+  .deck__dots { gap: 9px; }
+}
+
+/* ── Phone held sideways ────────────────────────────────────
+   Wide enough to miss every phone breakpoint, but only ~400px
+   tall — so display type sized against WIDTH becomes enormous
+   relative to the screen. .contact__big was arriving at 68px on
+   a 393px-tall viewport. Height is what is scarce here, so the
+   display sizes and the section rhythm both come down. */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root {
+    --fs-state: clamp(1.6rem, 3.4vw, 2.1rem);
+    --fs-sm:    clamp(1.25rem, 2.6vw, 1.7rem);
+    --sec-y:    clamp(2.25rem, 9vh, 3.25rem);
+  }
+  .svc__title       { font-size: clamp(1.2rem, 2.6vw, 1.6rem); }
+  .contact__big     { font-size: clamp(1.8rem, 4.2vw, 2.6rem); }
+  .footer__wordmark { font-size: clamp(2.4rem, 7vw, 3.5rem); }
+  .menu__nav a      { font-size: clamp(1.15rem, 3vw, 1.6rem); }
+  .founder__name    { font-size: clamp(1.05rem, 2.4vw, 1.3rem); }
+
+  /* The menu centres its items; at this height they would
+     otherwise overflow with no way to reach the last one. */
+  .menu { justify-content: flex-start; overflow-y: auto; }
+
+  /* A scroll-driven hero measured in svh costs far more thumb
+     travel when svh is only ~400px. */
+  .portal { --portal-h: 260svh; }
+}
+
+/* ── Section rhythm, second pass ────────────────────────────
+   After halving --sec-y the boundaries still measured 104–158px
+   between one section's last line and the next section's first
+   — 13–19% of an 812px screen, ten times down the page. These
+   are the three stacked contributors:
+
+     --sec-y            applied to BOTH edges, so it lands twice
+     .sec               header rule -> first block of content
+     .sec__statement    display line -> the content under it
+
+   Each is cut to roughly two-thirds. The sections still read as
+   separate blocks; they just stop costing a swipe each. */
+@media (max-width: 720px) {
+  :root { --sec-y: clamp(2rem, 4.6vh, 2.75rem); }
+
+  .sec {
+    padding-bottom: .8rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2.2rem);
+  }
+
+  .sec__statement  { margin-bottom: clamp(1.6rem, 4.5vw, 2.5rem); }
+  .why__statement  { margin-bottom: clamp(1.8rem, 5vw, 3rem); }
+}
+
+/* ── "Five disciplines. One team." list ─────────────────────
+   Each .svc row was 247px tall on a phone to hold a 19px title,
+   two lines of description and one line of tags. The height was
+   almost all air: 27px of padding top AND bottom, a 16px grid
+   row-gap between all three parts, plus separate top margins on
+   the description and the tag list. Five rows of that is most of
+   a screen of nothing.
+
+   The tags were also set at .6rem — 9.6px, uppercase and
+   letter-spaced, which is past the point of being readable at
+   arm's length. */
+@media (max-width: 720px) {
+  .svc {
+    padding-block: 1rem;
+    gap: .5rem clamp(1rem, 4vw, 3rem);
+  }
+
+  .svc__num  { padding-top: .2rem; }
+  .svc__desc { padding-top: .1rem; font-size: .9rem; }
+
+  .svc__tags    { margin-top: .45rem; gap: .3rem .8rem; }
+  .svc__tags li { font-size: .72rem; }   /* 9.6px -> 11.5px */
+}
+
+/* ── "What we are" pillars, 2x2 on a phone ──────────────────
+   Each cell is only ~118px wide once the grid splits in two, so
+   the generous desktop padding was eating a third of the line
+   length and pushing every description to five wrapped lines.
+   Trimming the padding buys back width; .87rem keeps the text
+   above the readable floor while fitting more words per line.
+
+   (This supersedes an earlier .92rem on .pillar__d, which was
+   set when these cells were still running near full width.) */
+@media (max-width: 720px) {
+  .pillar {
+    padding: 1rem .8rem;
+    gap: .35rem;
+  }
+  .pillar__v { font-size: 1.05rem; }
+  .pillar__d { font-size: .87rem; line-height: 1.5; }
+
+  /* The head row no longer has a second item to space against. */
+  .about__panelHead { padding: .8rem 1rem; }
+}

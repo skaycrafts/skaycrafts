@@ -1,0 +1,124 @@
+/* ============================================================
+   FONTS
+   ------------------------------------------------------------
+   Self-hosted. The site makes no external font requests, so it
+   renders identically offline, on a locked-down network, and in
+   regions where Google Fonts is blocked — and there is no
+   render-blocking third-party round trip on first paint.
+
+     Jost           — SIL Open Font License 1.1  (display + body)
+     Pinyon Script  — SIL Open Font License 1.1  (script accent)
+
+   Both licences permit commercial use and embedding. Keep the
+   OFL.txt files alongside the woff2s if you redistribute.
+
+   Jost ships as a VARIABLE font: one file covers the whole
+   300–700 range, which is why five weights cost a single 26KB
+   download instead of five separate files.
+
+   Subsetting: only latin and latin-ext are bundled. The cyrillic
+   subset Google also serves is dropped — nothing on this site
+   uses it. Add it back if that ever changes.
+
+   ── Swapping in the brand faces ────────────────────────────
+   Vonca and Bangeline are the intended faces but are commercial
+   and NOT bundled. To activate them:
+
+     1. Confirm you hold a WEBFONT licence for each. A desktop
+        licence does not normally cover web embedding, and these
+        files are served publicly to every visitor.
+     2. Convert to .woff2 (https://transfonter.org).
+     3. Drop them in assets/fonts/ and uncomment the block at the
+        bottom of this file.
+
+   The font stacks in tokens.css already name Vonca and Bangeline
+   ahead of Jost and Pinyon Script, so they take over the moment
+   those @font-face rules exist. Nothing else needs editing.
+   ============================================================ */
+
+/* ── Jost — variable, 300–700 ───────────────────────────────── */
+@font-face {
+  font-family: 'Jost';
+  src: url('../assets/fonts/Jost-Variable-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+                 U+FFFD;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('../assets/fonts/Jost-Variable-latin-ext.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                 U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                 U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ── Pinyon Script — the script accent ──────────────────────── */
+@font-face {
+  font-family: 'Pinyon Script';
+  src: url('../assets/fonts/PinyonScript-Regular-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+                 U+FFFD;
+}
+@font-face {
+  font-family: 'Pinyon Script';
+  src: url('../assets/fonts/PinyonScript-Regular-latin-ext.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                 U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                 U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ── Brand faces — inactive ─────────────────────────────────
+   Uncomment once the licensed files are in assets/fonts/. Left
+   commented rather than deleted so the paths and weights stay
+   correct; live @font-face rules pointing at absent files would
+   put six 404s back in every visitor's console.
+
+@font-face {
+  font-family: 'Vonca';
+  src: url('../assets/fonts/Vonca-Light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Vonca';
+  src: url('../assets/fonts/Vonca-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Vonca';
+  src: url('../assets/fonts/Vonca-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Vonca';
+  src: url('../assets/fonts/Vonca-SemiBold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Vonca';
+  src: url('../assets/fonts/Vonca-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Bangeline';
+  src: url('../assets/fonts/Bangeline.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+   ─────────────────────────────────────────────────────────── */

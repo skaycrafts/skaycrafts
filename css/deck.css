@@ -1,0 +1,182 @@
+/* ============================================================
+   THROWABLE DECK — the project catalogue as a physical stack
+   ============================================================ */
+
+.releases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5.5rem);
+  align-items: center;
+}
+
+.releases__copy { display: flex; flex-direction: column; gap: 1.6rem; }
+.releases__btns { display: flex; flex-wrap: wrap; gap: .7rem; }
+
+/* ── The deck ───────────────────────────────────────────────
+   touch-action: pan-y keeps vertical scrolling working on a
+   phone while horizontal drags belong to the deck.            */
+.deck {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.deck:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 14px;
+}
+
+/* Each successive card steps across, up, down in scale and in
+   rotation, so the stack reads as physical rather than as a
+   pile of identical rectangles. --i is the depth, set by JS. */
+.deckcard {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  transform-origin: 50% 100%;
+  cursor: grab;
+  transform:
+    translate3d(calc(var(--i) * 13px), calc(var(--i) * -9px), 0)
+    scale(calc(1 - var(--i) * .045))
+    rotate(calc(var(--i) * -1.6deg));
+  transition: transform .55s var(--ease-out), opacity .45s var(--ease-out);
+}
+.deckcard[data-top="true"] { cursor: grab; }
+.deckcard.is-dragging { cursor: grabbing; transition: none; }
+
+/* Cards deep in the stack fade back rather than piling up visibly */
+.deckcard[style*="--i: 4"],
+.deckcard[style*="--i: 5"] { opacity: .5; }
+
+.deckcard__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.deckcard__no,
+.deckcard__tag {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+}
+.deckcard__no { color: var(--dolphin); }
+.deckcard__tag { color: var(--ink-3); }
+
+.deckcard__art {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+}
+
+.deckcard__foot {
+  padding: 1.05rem 1.15rem 1.2rem;
+  border-top: 1px solid var(--rule-soft);
+}
+.deckcard__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+  line-height: 1.05;
+  margin-bottom: .35rem;
+}
+.deckcard__cat {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.deckcard__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .4rem;
+  margin-top: .85rem;
+  padding-bottom: .25rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-2);
+  word-break: break-all;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.deckcard__link:hover { color: var(--accent-deep); border-bottom-color: var(--rule-accent); }
+
+/* ── Hint + progress dots ───────────────────────────────────── */
+.deck__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+.deck__hint {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.deck__dots { display: flex; gap: 7px; }
+.deck__dots i {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rule-strong);
+  transition: background-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.deck__dots i.is-on { background: var(--accent-deep); transform: scale(1.35); }
+
+@media (max-width: 900px) {
+  .releases { grid-template-columns: 1fr; gap: 2.5rem; }
+  .deck { max-width: 420px; margin-inline: auto; }
+}
+
+/* Reduced motion: no throwing, no stack theatre — a plain
+   readable list of every project instead. */
+@media (prefers-reduced-motion: reduce) {
+  .deck {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .deckcard {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    cursor: default;
+    min-height: 240px;
+  }
+  .deck__hint, .deck__dots { display: none; }
+}
+
+/* ── Real project screenshots ───────────────────────────────
+   Cards 01–04 show a capture of the live site instead of the
+   CSS mock-up. The screen--* class stays on the wrapper so its
+   background still fills the frame while the image decodes,
+   which keeps the card from flashing white on a dark shot. */
+.deckcard__art--shot { padding: 0; }
+
+.deckcard__shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Anchored to the top: every capture puts the logo and headline
+     in its upper band, so when the card crops it should always be
+     the foot of the image that goes, never the masthead. */
+  object-position: 50% 0;
+}

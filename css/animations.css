@@ -1,0 +1,120 @@
+/* ============================================================
+   ANIMATIONS — entrance choreography, keyframes, motion opt-out
+   ============================================================ */
+
+/* ── Page intro ─────────────────────────────────────────────
+   The portal hero is scroll-driven, so the only timed entrance
+   left is for anything still marked [data-intro].              */
+[data-intro]:not([data-split]) {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: introUp .95s var(--ease-out) forwards;
+}
+[data-intro="1"] { animation-delay: .05s; }
+[data-intro="2"] { animation-delay: .14s; }
+[data-intro="3"] { animation-delay: .40s; }
+[data-intro="4"] { animation-delay: .52s; }
+
+/* ── Scroll reveal ─────────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity .85s var(--ease-out),
+    transform .85s var(--ease-out);
+  transition-delay: calc(var(--d, 0) * .08s);
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+/* ── Split text (built by js/reveal.js) ────────────────────── */
+.split { display: block; }
+
+/* Padding + negative margin give descenders and the right lean of
+   italics room inside the mask without adding visible spacing. */
+.sw {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: .14em;
+  margin-bottom: -.14em;
+  padding-right: .06em;
+  margin-right: -.06em;
+}
+.sw__i {
+  display: inline-block;
+  transform: translateY(112%);
+  transition: transform 1s var(--ease-out);
+  transition-delay: calc(var(--d, 0) * .055s);
+}
+.is-in .sw__i { transform: translateY(0); }
+
+.sl { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.sl__i {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 1.05s var(--ease-out), opacity .8s var(--ease-out);
+  transition-delay: calc(var(--d, 0) * .11s);
+}
+.is-in .sl__i { transform: translateY(0); opacity: 1; }
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes introUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollTrace {
+  0%   { transform: translateY(-100%); }
+  60%  { transform: translateY(240%); }
+  100% { transform: translateY(240%); }
+}
+
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-4%, 3%); }
+  40%  { transform: translate(3%, -4%); }
+  60%  { transform: translate(-3%, -2%); }
+  80%  { transform: translate(4%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   Content stays fully visible; decoration stops moving.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html { scroll-behavior: auto; }
+
+  [data-intro] { opacity: 1 !important; transform: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .sw__i, .sl__i { transform: none !important; opacity: 1 !important; }
+  .sw, .sl { overflow: visible; }
+  .sec__rule { transform: scaleX(1) !important; }
+
+  .grain { display: none; }
+  .cursor { display: none !important; }
+  body.has-cursor, body.has-cursor * { cursor: auto !important; }
+
+  .portal__scrollLine i { transform: none !important; }
+
+  .menu { transition: none; }
+  .menu__nav a { opacity: 1; transform: none; animation: none !important; }
+
+  /* Horizontal timeline degrades to a scrollable row */
+  .process__track { transform: none !important; }
+  .process__viewport { overflow-x: auto; scroll-snap-type: x mandatory; }
+  .step { scroll-snap-align: start; }
+}

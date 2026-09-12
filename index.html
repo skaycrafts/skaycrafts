@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0A0C" />
+
+<title>Skay Crafts — Building Beyond Limits</title>
+<meta name="description" content="Skay Crafts is a modern software and digital solutions company. We build software, websites, digital marketing, SEO and AI-powered systems that help businesses grow." />
+
+<!-- BEFORE LAUNCH: replace https://skaycrafts.com with the real domain in the
+     three URLs below. Link previews (WhatsApp, LinkedIn, Facebook) need
+     absolute URLs — a relative og:image will not render a thumbnail. -->
+<link rel="canonical" href="https://skaycrafts.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://skaycrafts.com/" />
+<meta property="og:title" content="Skay Crafts — Building Beyond Limits" />
+<meta property="og:description" content="Software, websites, digital, SEO and AI. Technology built around your business." />
+<meta property="og:image" content="https://skaycrafts.com/assets/logo-full.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/favicon.png" />
+
+<!-- Fonts are self-hosted in assets/fonts/ — no external requests.
+     Preloading the two faces used above the fold (Jost for the wordmark,
+     Pinyon Script for the italic accent) starts them fetching before the
+     CSS that references them has parsed. -->
+<link rel="preload" href="assets/fonts/Jost-Variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/PinyonScript-Regular-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Styles — load order matters: tokens > base > layout > components > sections > animations > responsive -->
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/portal.css" />
+<link rel="stylesheet" href="css/deck.css" />
+<link rel="stylesheet" href="css/sections.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Skay Crafts",
+  "slogan": "Building Beyond Limits",
+  "foundingDate": "2026-04-16",
+  "email": "skaycraftsmail@gmail.com",
+  "telephone": "+91-7845391992",
+  "description": "Software, websites, digital marketing, SEO and AI solutions.",
+  "founder": [
+    { "@type": "Person", "name": "Akshaya A", "jobTitle": "Co-Founder" },
+    { "@type": "Person", "name": "Syed Muhith Ibrahim R", "jobTitle": "Co-Founder" }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<!-- Global chrome -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"><em class="cursor__label"></em></span>
+</div>
+<div class="scrollbar" aria-hidden="true"><i data-scroll-progress></i></div>
+<div class="grain" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="nav__brand" href="#top" aria-label="Skay Crafts — home">
+      <span class="mark">
+        <img src="assets/logo-full.png" alt="" data-logo />
+        <span class="mark__fallback" aria-hidden="true">SC</span>
+      </span>
+      <span class="nav__wordmark">
+        <span class="nav__name">SKAY CRAFTS</span>
+        <span class="nav__tag">BUILDING BEYOND LIMITS</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work" data-nav-link><i>01</i>Work</a>
+      <a href="#about" data-nav-link><i>02</i>About</a>
+      <a href="#services" data-nav-link><i>03</i>Services</a>
+      <a href="#process" data-nav-link><i>05</i>Process</a>
+      <a href="#faq" data-nav-link><i>07</i>FAQ</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a href="#contact" class="linkrule nav__cta" data-magnetic>
+        <span>Start a project</span>
+        <i class="linkrule__line" aria-hidden="true"></i>
+      </a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav class="menu__nav" aria-label="Mobile">
+    <a href="#work"     data-menu-link><em>01</em><span>Work</span></a>
+    <a href="#about"    data-menu-link><em>02</em><span>About</span></a>
+    <a href="#services" data-menu-link><em>03</em><span>Services</span></a>
+    <a href="#tech"     data-menu-link><em>04</em><span>Technology</span></a>
+    <a href="#process"  data-menu-link><em>05</em><span>Process</span></a>
+    <a href="#faq"      data-menu-link><em>07</em><span>FAQ</span></a>
+    <a href="#contact"  data-menu-link><em>08</em><span>Contact</span></a>
+  </nav>
+  <div class="menu__foot">
+    <a href="mailto:skaycraftsmail@gmail.com">skaycraftsmail@gmail.com</a>
+    <a href="tel:+917845391992">+91 78453 91992</a>
+  </div>
+</div>
+
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ═══════════════════════════════════════════════════════════
+     01 · PORTAL HERO
+     Two panels part to uncover the mark while the wordmark
+     grows, tightens and splits to opposite edges.
+     ═══════════════════════════════════════════════════════════ -->
+<section class="portal" id="hero" data-portal>
+  <div class="portal__stage">
+
+    <div class="portal__image">
+      <!-- The lockup is cropped, not edited: the wrapper hides the
+           "BUILDING BEYOND LIMITS" band so it does not compete with the
+           SKAY CRAFTS wordmark overlaid on top. assets/logo-full.png is
+           untouched — see assets/README.md for the band measurements. -->
+      <span class="portal__logo">
+        <img src="assets/logo-full.png" alt="" data-logo />
+      </span>
+    </div>
+
+    <span class="portal__veil" aria-hidden="true"></span>
+
+    <span class="portal__panel portal__panel--l" aria-hidden="true"></span>
+    <span class="portal__panel portal__panel--r" aria-hidden="true"></span>
+
+    <span class="portal__dot portal__dot--a" aria-hidden="true"></span>
+    <span class="portal__dot portal__dot--b" aria-hidden="true"></span>
+
+    <h1 class="portal__title" aria-label="Skay Crafts">
+      <span>SKAY</span><span>CRAFTS</span>
+    </h1>
+
+    <p class="portal__meta portal__meta--br">
+      <span>Scroll</span>
+      <span class="portal__scrollLine"><i></i></span>
+    </p>
+
+  </div>
+</section>
+
+<section class="section portal__after">
+  <div class="container">
+    <div class="portal__afterGrid">
+      <p class="portal__lead lead" data-reveal>
+        We build modern software, digital experiences and intelligent
+        solutions that help businesses grow.
+      </p>
+      <div class="portal__cta" data-reveal data-reveal-delay="1">
+        <a href="#work" class="btn btn--solid" data-magnetic><span>Explore Our Work</span></a>
+        <a href="#contact" class="btn btn--line" data-magnetic><span>Start a Project</span></a>
+      </div>
+    </div>
+
+    <dl class="portal__facts" data-reveal data-reveal-delay="2">
+      <div><dt>Founded</dt><dd>2026</dd></div>
+      <div><dt>Disciplines</dt><dd>Five</dd></div>
+      <div><dt>Projects</dt><dd>Six</dd></div>
+      <div><dt>Approach</dt><dd>Custom<em class="ital">.</em></dd></div>
+    </dl>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     02 · SELECTED WORK — throwable deck
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section work" id="work">
+  <div class="container">
+    <header class="sec" data-reveal>
+      <span class="sec__no">01</span>
+      <h2 class="sec__label">Selected work</h2>
+      <span class="sec__rule"></span>
+    </header>
+
+    <div class="releases">
+      <div class="releases__copy">
+        <p class="statement" data-split="words">Built, shipped, <em class="ital">running.</em></p>
+        <p class="lead" data-reveal>
+          Six projects across hospitality, gaming, film and mobility — websites,
+          booking systems, business software and the marketing around them.
+        </p>
+        <div class="releases__btns" data-reveal data-reveal-delay="1">
+          <a href="#contact" class="btn btn--solid" data-magnetic><span>Start a Project</span></a>
+          <a href="#services" class="btn btn--line" data-magnetic><span>What We Build</span></a>
+        </div>
+      </div>
+
+      <div class="releases__deck" data-reveal>
+        <div class="deck" data-deck tabindex="0" role="group"
+             data-cursor="view" data-cursor-label="Drag"
+             aria-label="Project catalogue. Swipe or drag a card aside, or use the left and right arrow keys.">
+
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">01</span><span class="deckcard__tag">Gaming · Chennai</span></div>
+            <div class="deckcard__art deckcard__art--shot screen--playzoo">
+              <img class="deckcard__shot" src="assets/work/playzoo.webp"
+                   alt="The PlayZoo website homepage" width="900" height="600"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">PlayZoo</h3>
+              <p class="deckcard__cat">Website · Digital Marketing</p>
+              <a class="deckcard__link" href="https://playzoo.in/" target="_blank" rel="noopener">playzoo.in<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">02</span><span class="deckcard__tag">Stays · Coimbatore</span></div>
+            <div class="deckcard__art deckcard__art--shot screen--cornerstay">
+              <img class="deckcard__shot" src="assets/work/cornerstay.webp"
+                   alt="The CornerStay website homepage" width="900" height="600"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">CornerStay</h3>
+              <p class="deckcard__cat">Website · Booking System</p>
+              <a class="deckcard__link" href="https://cornerstay.in/" target="_blank" rel="noopener">cornerstay.in<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">03</span><span class="deckcard__tag">Stays · Chennai</span></div>
+            <div class="deckcard__art deckcard__art--shot screen--roost">
+              <img class="deckcard__shot" src="assets/work/roost.webp"
+                   alt="The Roost website homepage" width="900" height="600"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">The Roost</h3>
+              <p class="deckcard__cat">Website · Technology Solutions</p>
+              <a class="deckcard__link" href="https://theroostsrh.com/" target="_blank" rel="noopener">theroostsrh.com<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">04</span><span class="deckcard__tag">Film</span></div>
+            <div class="deckcard__art deckcard__art--shot screen--farook">
+              <img class="deckcard__shot" src="assets/work/farook.webp"
+                   alt="The Farook J Basha portfolio homepage" width="900" height="600"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">Farook J Basha</h3>
+              <p class="deckcard__cat">Cinematographer · Portfolio</p>
+              <a class="deckcard__link" href="https://farookjbashadop.com/" target="_blank" rel="noopener">farookjbashadop.com<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <!-- 05 and 06 are not deployed yet, so they keep the CSS mock-up
+               instead of a capture, and carry no link. Swap in an <img> the
+               same way as cards 01–04 once each domain is live. -->
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">05</span><span class="deckcard__tag">In production</span></div>
+            <div class="deckcard__art screen--vapr">
+              <span class="ui-app">
+                <span class="ui-appbar"><s></s><i></i></span>
+                <span class="ui-card"><b></b><s></s><s class="w60"></s></span>
+                <b class="ui-btn full">VAPR</b>
+              </span>
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">VAPR</h3>
+              <p class="deckcard__cat">In development</p>
+            </div>
+          </article>
+
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">06</span><span class="deckcard__tag">In production</span></div>
+            <div class="deckcard__art screen--hionwheels">
+              <span class="ui-dash">
+                <span class="ui-side"><i></i><i></i><i></i><i></i></span>
+                <span class="ui-main">
+                  <span class="ui-kpis"><b></b><b></b><b></b></span>
+                  <span class="ui-chart">
+                    <s style="--h:40%"></s><s style="--h:66%"></s><s style="--h:52%"></s>
+                    <s style="--h:88%"></s><s style="--h:72%"></s><s style="--h:96%"></s><s style="--h:60%"></s>
+                  </span>
+                </span>
+              </span>
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">HiOnWheels</h3>
+              <p class="deckcard__cat">In development</p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="deck__meta">
+          <p class="deck__hint"><span class="hint--pointer">Drag a card · or use arrow keys</span><span class="hint--touch">Swipe a card aside to browse</span></p>
+          <div class="deck__dots" data-deck-dots aria-hidden="true">
+            <i class="is-on"></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     03 · ABOUT
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section about" id="about">
+  <span class="ghost" aria-hidden="true">02</span>
+
+  <div class="container">
+    <header class="sec" data-reveal>
+      <span class="sec__no">02</span>
+      <h2 class="sec__label">About Skay Crafts</h2>
+      <span class="sec__rule"></span>
+    </header>
+
+    <div class="about__grid">
+      <p class="about__title statement" data-split="words">
+        Technology built around <em class="ital">your business.</em>
+      </p>
+
+      <div class="about__body">
+        <p class="lead" data-reveal>
+          Skay Crafts is a modern software and digital solutions company founded in 2026.
+          We combine software engineering, modern design, AI and digital strategy to create
+          solutions that solve real business problems.
+        </p>
+        <a href="#services" class="linkrule" data-reveal data-reveal-delay="1">
+          <span>See what we build</span>
+          <i class="linkrule__line" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Raised off the Linen ground: the one panel in the page that
+         actually sits above the surface rather than being ruled onto it. -->
+    <div class="about__panel" data-reveal>
+      <div class="about__panelHead">
+        <span class="mono">What we are</span>
+      </div>
+      <ul class="pillars">
+        <li class="pillar">
+          <span class="pillar__k">01</span>
+          <span class="pillar__v">Software</span>
+          <span class="pillar__d">Systems built to a workflow, not a template.</span>
+        </li>
+        <li class="pillar">
+          <span class="pillar__k">02</span>
+          <span class="pillar__v">AI</span>
+          <span class="pillar__d">Automation where it earns its place.</span>
+        </li>
+        <li class="pillar">
+          <span class="pillar__k">03</span>
+          <span class="pillar__v">Digital</span>
+          <span class="pillar__d">Marketing that brings the right people in.</span>
+        </li>
+        <li class="pillar">
+          <span class="pillar__k">04</span>
+          <span class="pillar__v">Growth</span>
+          <span class="pillar__d">Solutions that keep pace with the business.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     04 · WHAT WE BUILD
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section services" id="services">
+  <span class="ghost ghost--right" aria-hidden="true">03</span>
+
+  <div class="container">
+    <header class="sec" data-reveal>
+      <span class="sec__no">03</span>
+      <h2 class="sec__label">What we build</h2>
+      <span class="sec__rule"></span>
+    </header>
+
+    <p class="statement sec__statement" data-split="words">
+      Five disciplines. <em class="ital">One team.</em>
+    </p>
+
+    <div class="services__list">
+      <article class="svc" data-reveal>
+        <span class="svc__num">01</span>
+        <h3 class="svc__title">Software</h3>
+        <p class="svc__desc">Custom business software, dashboards, billing and management systems.</p>
+        <ul class="svc__tags"><li>Dashboards</li><li>Billing</li><li>Internal tools</li></ul>
+      </article>
+
+      <article class="svc" data-reveal>
+        <span class="svc__num">02</span>
+        <h3 class="svc__title">Websites</h3>
+        <p class="svc__desc">High-performance websites and web applications.</p>
+        <ul class="svc__tags"><li>Web apps</li><li>Landing pages</li><li>E-commerce</li></ul>
+      </article>
+
+      <article class="svc" data-reveal>
+        <span class="svc__num">03</span>
+        <h3 class="svc__title">Digital</h3>
+        <p class="svc__desc">Digital marketing, social media and customer acquisition.</p>
+        <ul class="svc__tags"><li>Social</li><li>Campaigns</li><li>Content</li></ul>
+      </article>
+
+      <article class="svc" data-reveal>
+        <span class="svc__num">04</span>
+        <h3 class="svc__title">SEO</h3>
+        <p class="svc__desc">Search visibility, local SEO and Google Business optimization.</p>
+        <ul class="svc__tags"><li>Local SEO</li><li>Technical</li><li>Google Business</li></ul>
+      </article>
+
+      <article class="svc" data-reveal>
+        <span class="svc__num">05</span>
+        <h3 class="svc__title">AI &amp; Automation</h3>
+        <p class="svc__desc">AI-powered workflows and intelligent business solutions.</p>
+        <ul class="svc__tags"><li>Agents</li><li>Workflows</li><li>Integrations</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     05 · TECHNOLOGY — the stack, layer by layer
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section tech" id="tech">
+  <span class="ghost ghost--right" aria-hidden="true">04</span>
+
+  <div class="container">
+    <header class="sec" data-reveal>
+      <span class="sec__no">04</span>
+      <h2 class="sec__label">Technology &amp; AI</h2>
+      <span class="sec__rule"></span>
+    </header>
+
+    <div class="tech__grid">
+      <div class="tech__intro">
+        <p class="statement" data-split="words">We build with <em class="ital">what's next.</em></p>
+        <p class="lead" data-reveal>
+          From intelligent automation to scalable cloud applications, we use modern
+          technology to turn ideas into working products.
+        </p>
+        <a href="#contact" class="linkrule" data-reveal data-reveal-delay="1">
+          <span>Talk through your stack</span>
+          <i class="linkrule__line" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <!-- Read bottom-up like a real stack: data underneath, interface on top. -->
+      <ol class="stack">
+        <li class="layer" data-reveal>
+          <span class="layer__no">01</span>
+          <div class="layer__body">
+            <h3 class="layer__name">Interface</h3>
+            <p class="layer__desc">What people actually touch.</p>
+          </div>
+          <ul class="layer__tech">
+            <li>Next.js</li><li>React</li><li>Tailwind</li>
+          </ul>
+        </li>
+
+        <li class="layer" data-reveal data-reveal-delay="1">
+          <span class="layer__no">02</span>
+          <div class="layer__body">
+            <h3 class="layer__name">Services</h3>
+            <p class="layer__desc">The logic that runs the business.</p>
+          </div>
+          <ul class="layer__tech">
+            <li>Node.js</li><li>Python</li><li>APIs</li>
+          </ul>
+        </li>
+
+        <li class="layer" data-reveal data-reveal-delay="2">
+          <span class="layer__no">03</span>
+          <div class="layer__body">
+            <h3 class="layer__name">Data</h3>
+            <p class="layer__desc">Where everything is kept and queried.</p>
+          </div>
+          <ul class="layer__tech">
+            <li>PostgreSQL</li><li>Supabase</li>
+          </ul>
+        </li>
+
+        <li class="layer layer--accent" data-reveal data-reveal-delay="3">
+          <span class="layer__no">04</span>
+          <div class="layer__body">
+            <h3 class="layer__name">Intelligence</h3>
+            <p class="layer__desc">Workflows that decide, not just store.</p>
+          </div>
+          <ul class="layer__tech">
+            <li>AI</li><li>LLM Agents</li><li>Automation</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     06 · PROCESS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="process" id="process" data-process>
+  <div class="process__sticky">
+    <div class="container process__head">
+      <header class="sec">
+        <span class="sec__no">05</span>
+        <h2 class="sec__label">Our process</h2>
+        <span class="sec__rule"></span>
+      </header>
+      <p class="statement statement--sm">Six steps, <em class="ital">start to scale.</em></p>
+      <span class="process__progress" aria-hidden="true"><i data-process-bar></i></span>
+    </div>
+
+    <div class="process__viewport">
+      <ol class="process__track" data-process-track>
+        <li class="step"><span class="step__num">01</span><h3 class="step__title">Discover</h3><p class="step__desc">Understand the business.</p></li>
+        <li class="step"><span class="step__num">02</span><h3 class="step__title">Strategize</h3><p class="step__desc">Plan the right solution.</p></li>
+        <li class="step"><span class="step__num">03</span><h3 class="step__title">Design</h3><p class="step__desc">Create the experience.</p></li>
+        <li class="step"><span class="step__num">04</span><h3 class="step__title">Build</h3><p class="step__desc">Develop with modern technology.</p></li>
+        <li class="step"><span class="step__num">05</span><h3 class="step__title">Launch</h3><p class="step__desc">Deploy and deliver.</p></li>
+        <li class="step"><span class="step__num">06</span><h3 class="step__title">Evolve</h3><p class="step__desc">Improve as the business grows.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     07 · WHY SKAY CRAFTS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section why" id="why">
+  <span class="ghost" aria-hidden="true">06</span>
+
+  <div class="container">
+    <header class="sec" data-reveal>
+      <span class="sec__no">06</span>
+      <h2 class="sec__label">Why Skay Crafts</h2>
+      <span class="sec__rule"></span>
+    </header>
+
+    <p class="why__statement" data-split="lines">
+      <span class="why__dim">Not just a website.</span>
+      <span class="why__dim">Not just software.</span>
+      <span class="why__hot">A technology <em class="ital">partner.</em></span>
+    </p>
+
+    <div class="why__grid">
+      <article class="value" data-reveal>
+        <span class="value__num">01</span>
+        <h3>Built Around You</h3>
+        <p>Custom solutions instead of generic templates.</p>
+      </article>
+      <article class="value" data-reveal data-reveal-delay="1">
+        <span class="value__num">02</span>
+        <h3>AI-Powered</h3>
+        <p>Using AI where it creates genuine value.</p>
+      </article>
+      <article class="value" data-reveal data-reveal-delay="2">
+        <span class="value__num">03</span>
+        <h3>Modern by Default</h3>
+        <p>Fast, responsive and scalable technology.</p>
+      </article>
+      <article class="value" data-reveal data-reveal-delay="3">
+        <span class="value__num">04</span>
+        <h3>Built for Growth</h3>
+        <p>Solutions designed to evolve with your business.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     08 · FAQ
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section faq" id="faq">
+  <div class="container faq__inner">
+    <div class="faq__aside">
+      <header class="sec" data-reveal>
+        <span class="sec__no">07</span>
+        <h2 class="sec__label">FAQ</h2>
+        <span class="sec__rule"></span>
+      </header>
+      <p class="statement statement--sm" data-split="words">Questions, <em class="ital">answered.</em></p>
+      <p class="faq__note" data-reveal>Still unsure? <a href="#contact" class="link-underline">Talk to us</a>.</p>
+    </div>
+
+    <div class="faq__list" data-accordion>
+      <div class="qa" data-reveal>
+        <button class="qa__q" type="button" aria-expanded="false"><i class="qa__n">01</i><span>What does Skay Crafts do?</span><i class="qa__icon" aria-hidden="true"></i></button>
+        <div class="qa__a"><div><p>We build software, websites, digital solutions, SEO, marketing systems and AI-powered applications.</p></div></div>
+      </div>
+      <div class="qa" data-reveal data-reveal-delay="1">
+        <button class="qa__q" type="button" aria-expanded="false"><i class="qa__n">02</i><span>Do you build custom software?</span><i class="qa__icon" aria-hidden="true"></i></button>
+        <div class="qa__a"><div><p>Yes. We develop software around the specific workflow and requirements of each business.</p></div></div>
+      </div>
+      <div class="qa" data-reveal data-reveal-delay="2">
+        <button class="qa__q" type="button" aria-expanded="false"><i class="qa__n">03</i><span>Do you work with small businesses?</span><i class="qa__icon" aria-hidden="true"></i></button>
+        <div class="qa__a"><div><p>Yes. We work with startups, local businesses and growing companies.</p></div></div>
+      </div>
+      <div class="qa" data-reveal data-reveal-delay="3">
+        <button class="qa__q" type="button" aria-expanded="false"><i class="qa__n">04</i><span>Can you handle both development and marketing?</span><i class="qa__icon" aria-hidden="true"></i></button>
+        <div class="qa__a"><div><p>Yes. Skay Crafts can provide development, SEO and digital marketing as part of one digital solution.</p></div></div>
+      </div>
+      <div class="qa" data-reveal data-reveal-delay="4">
+        <button class="qa__q" type="button" aria-expanded="false"><i class="qa__n">05</i><span>Can you integrate AI into existing businesses?</span><i class="qa__icon" aria-hidden="true"></i></button>
+        <div class="qa__a"><div><p>Yes. We can identify suitable workflows for automation and AI integration.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     09 · CONTACT
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <header class="sec" data-reveal>
+      <span class="sec__no">08</span>
+      <h2 class="sec__label">Contact</h2>
+      <span class="sec__rule"></span>
+    </header>
+
+    <div class="contact__cta">
+      <p class="contact__big" data-split="lines">
+        <span>Have an idea?</span>
+        <span>Let's <em class="ital">build it.</em></span>
+      </p>
+      <div class="contact__aside">
+        <p class="lead" data-reveal>
+          Tell us what you're building. We'll help turn the idea into a digital solution.
+        </p>
+        <div class="contact__btns" data-reveal data-reveal-delay="1">
+          <a href="#contactForm" class="btn btn--solid" data-magnetic><span>Start a Project</span></a>
+          <a href="https://wa.me/917845391992" target="_blank" rel="noopener" class="btn btn--line" data-magnetic><span>WhatsApp Us</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact__panel">
+      <form class="form" id="contactForm" novalidate data-form data-reveal>
+        <div class="form__grid">
+          <div class="field">
+            <input type="text" id="f-name" name="name" placeholder=" " required autocomplete="name" />
+            <label for="f-name">Name</label>
+            <span class="field__err" data-err></span>
+          </div>
+          <div class="field">
+            <input type="text" id="f-company" name="company" placeholder=" " autocomplete="organization" />
+            <label for="f-company">Company</label>
+            <span class="field__err" data-err></span>
+          </div>
+          <div class="field">
+            <input type="email" id="f-email" name="email" placeholder=" " required autocomplete="email" />
+            <label for="f-email">Email</label>
+            <span class="field__err" data-err></span>
+          </div>
+          <div class="field">
+            <input type="tel" id="f-phone" name="phone" placeholder=" " autocomplete="tel" />
+            <label for="f-phone">Phone</label>
+            <span class="field__err" data-err></span>
+          </div>
+          <div class="field field--full field--select">
+            <select id="f-need" name="need" required>
+              <option value="" selected disabled hidden></option>
+              <option>Software</option>
+              <option>Website</option>
+              <option>Digital Marketing</option>
+              <option>SEO</option>
+              <option>AI &amp; Automation</option>
+              <option>Not sure yet</option>
+            </select>
+            <label for="f-need">What do you need?</label>
+            <span class="field__err" data-err></span>
+          </div>
+          <div class="field field--full">
+            <textarea id="f-message" name="message" rows="4" placeholder=" " required></textarea>
+            <label for="f-message">Message</label>
+            <span class="field__err" data-err></span>
+          </div>
+        </div>
+
+        <div class="form__foot">
+          <button type="submit" class="btn btn--solid" data-magnetic>
+            <span>Send Message</span>
+          </button>
+          <p class="form__hint">We usually reply within one business day.</p>
+        </div>
+
+        <p class="form__status" role="status" data-form-status></p>
+      </form>
+
+      <aside class="contact__info" data-reveal data-reveal-delay="1">
+        <div class="ci">
+          <span class="ci__k">Email</span>
+          <a class="ci__v" href="mailto:skaycraftsmail@gmail.com">skaycraftsmail@gmail.com</a>
+        </div>
+        <div class="ci">
+          <span class="ci__k">Phone</span>
+          <a class="ci__v" href="tel:+917845391992">+91 78453 91992</a>
+          <a class="ci__v" href="tel:+918110075633">+91 81100 75633</a>
+        </div>
+        <div class="ci">
+          <span class="ci__k">Services</span>
+          <p class="ci__v ci__v--plain">Software · Websites · Digital · SEO · AI</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     11 · FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="brand-lockup brand-lockup--sm">
+          <img src="assets/logo-full.png" alt="Skay Crafts" class="brand-lockup__img" data-logo />
+          <div class="brand-lockup__fallback" aria-hidden="true">
+            <span class="brand-lockup__mark">SC</span>
+            <span class="brand-lockup__name">SKAY CRAFTS</span>
+            <span class="brand-lockup__tag">BUILDING BEYOND LIMITS</span>
+          </div>
+        </div>
+        <p class="footer__disc mono">Software · Websites · Digital · SEO · AI</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="mono">&copy; <span data-year>2026</span> Skay Crafts</p>
+      <a href="#top" class="linkrule" data-magnetic>
+        <span>Back to top</span>
+        <i class="linkrule__line" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <div class="footer__wordmark" aria-hidden="true">SKAY CRAFTS</div>
+</footer>
+
+
+<!-- Scripts — classic, ordered, deferred (works over file:// and http) -->
+<script src="js/utils.js" defer></script>
+<script src="js/nav.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/reveal.js" defer></script>
+<script src="js/portal.js" defer></script>
+<script src="js/deck.js" defer></script>
+<script src="js/cards.js" defer></script>
+<script src="js/process.js" defer></script>
+<script src="js/accordion.js" defer></script>
+<script src="js/form.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

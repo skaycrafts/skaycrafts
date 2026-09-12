@@ -1,0 +1,157 @@
+/* ============================================================
+   SKAY CRAFTS — DESIGN TOKENS
+   ------------------------------------------------------------
+   Palette: Linen / Dolphin / Amethyst.
+
+     Linen     #FDF1E2   warm cream — the page ground
+     Dolphin   #655A7C   muted plum-grey — the ink
+     Amethyst  #AB92BF   soft violet — the accent
+
+   The three brand colours are held exactly as given. Everything
+   else here is a derived tint or shade of one of them, so the
+   whole page still resolves to those three hues.
+
+   CONTRAST, measured against the Linen ground:
+     · Dolphin        5.8:1   passes AA for body text
+     · Ink (derived)  9.1:1   used for headings and long copy
+     · Amethyst       2.4:1   FAILS for text — accent, rules and
+                              large display type only, never body
+
+   The hero and footer keep a black field because the logo is
+   chrome-on-black artwork: silver bevels disappear on cream.
+   ============================================================ */
+
+:root {
+  /* ── The three brand colours, unaltered ──────────────────── */
+  --linen:    #FDF1E2;
+  --dolphin:  #655A7C;
+  --amethyst: #AB92BF;
+
+  /* ── Ground — warm tints of Linen ────────────────────────── */
+  --ground:      var(--linen);
+  --ground-2:    #F7E9D7;   /* raised surface */
+  --ground-3:    #F0DFC9;   /* sunken / inset */
+  --surface:     #FBEBD8;
+
+  /* ── Ink — shades of Dolphin ─────────────────────────────── */
+  --ink:      #3A3349;   /* headings + body, 9.1:1 on Linen */
+  --ink-2:    var(--dolphin);
+  /* Muted labels. Deliberately NOT lighter than this: the site sets a lot of
+     11px uppercase type, and it has to clear 4.5:1 over the DARKEST part of
+     the paper texture, not just over flat Linen — the texture covers the
+     whole ground, so the flat value is never the real one. */
+  --ink-3:    #665D79;   /* 5.5:1 on Linen, 4.6:1 over the darkest texture */
+
+  /* Deliberately dim, for de-emphasised display lines. Large type only —
+     it clears 3:1 (the large-text threshold) but not 4.5:1. */
+  --ink-dim:  #7E7592;
+
+  /* ── Accent — Amethyst ───────────────────────────────────── */
+  --accent:      var(--amethyst);
+  --accent-deep: #8F76A6;   /* when the accent must carry weight */
+  --accent-soft: #D6C7E2;
+
+  /* ── Dark field — hero + footer, so the logo reads ───────── */
+  --field:      #000;
+  --field-2:    #12101A;   /* panels and dark surfaces */
+  --on-field:   var(--linen);
+  --on-field-2: #B9AEC8;
+
+  /* ── Rules & fills — ink at low alpha, never grey ────────── */
+  --rule:        rgba(58, 51, 73, .16);
+  --rule-soft:   rgba(58, 51, 73, .10);
+  --rule-strong: rgba(58, 51, 73, .30);
+  --rule-accent: rgba(143, 118, 166, .55);
+  --fill-soft:   rgba(101, 90, 124, .045);
+  --fill-accent: rgba(171, 146, 191, .18);
+
+  /* Rules on the dark field */
+  --rule-dark:        rgba(253, 241, 226, .16);
+  --rule-dark-soft:   rgba(253, 241, 226, .09);
+  --rule-dark-strong: rgba(253, 241, 226, .30);
+
+  /* ── Shadow — warm, never neutral grey ───────────────────── */
+  --shadow-card: 0 24px 60px -30px rgba(58, 51, 73, .38);
+  --shadow-lift: 0 36px 90px -36px rgba(58, 51, 73, .45);
+
+  /* ── Type ──────────────────────────────────────────────────
+     Vonca carries everything. Bangeline is the script accent,
+     used sparingly. Both are commercial and load from
+     assets/fonts/ via css/fonts.css; the Google faces after them
+     are stand-ins that render until those files are added.
+       Jost          — geometric workhorse, closest usable match
+       Pinyon Script — formal high-contrast script                */
+  --font-display: 'Vonca', 'Jost', 'Josefin Sans', system-ui, sans-serif;
+  --font-sans:    'Vonca', 'Jost', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-script:  'Bangeline', 'Pinyon Script', cursive;
+  --font-edit:    var(--font-script);
+  --font-brand:   var(--font-display);
+  --font-mono:    var(--font-sans);
+
+  /* Fluid scale */
+  --fs-hero:  clamp(3.2rem, 12vw, 11.5rem);
+  --fs-state: clamp(2.1rem, 5.6vw, 5.2rem);
+  --fs-sm:    clamp(1.7rem, 3.6vw, 2.9rem);
+  --fs-lead:  clamp(1rem, 1.35vw, 1.22rem);
+  --fs-body:  1rem;
+  --fs-micro: .68rem;
+
+  --track-tight: -.03em;
+  --track-wide:  .13em;
+
+  /* ── Paper ─────────────────────────────────────────────────
+     Strength of the embossed floral texture over the Linen
+     ground. Drop it toward 0 if the relief starts competing
+     with the type; 0 disables it entirely. --paper-tile is how wide
+     one repeat is drawn — smaller means the grain reads finer and
+     repeats more often.
+
+     The tile itself is tonally lifted (see assets/README.md) so that
+     multiplying it over Linen adds grain without dragging the ground
+     dark. Raising this much above .5, or regenerating the tile without
+     that lift, will push small muted type under 4.5:1 across most of
+     the page. Measure before changing it. */
+  --paper-strength: .5;
+  --paper-tile: 760px;
+
+  /* ── Space & rhythm ──────────────────────────────────────── */
+  --pad-x: clamp(1.25rem, 5vw, 5.5rem);
+  --maxw: 1400px;
+  --sec-y: clamp(6rem, 14vh, 12rem);
+  --gap: clamp(1rem, 2vw, 1.75rem);
+  --margin-col: clamp(0px, 7vw, 96px);
+
+  /* Radii: near-square. Rounded pills read as template. */
+  --r-xs: 2px;
+  --r-sm: 3px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --r-xl: 8px;
+  --r-pill: 999px;
+
+  /* ── Motion ──────────────────────────────────────────────── */
+  --ease-out:   cubic-bezier(.16, 1, .3, 1);
+  --ease-inout: cubic-bezier(.65, 0, .35, 1);
+  --ease-soft:  cubic-bezier(.25, .46, .45, .94);
+  --dur-fast: .26s;
+  --dur:      .5s;
+  --dur-slow: .9s;
+
+  /* ── Portal ──────────────────────────────────────────────── */
+  --portal-h: 260svh;
+  --panel-w: 51%;
+
+  /* ── Layering ────────────────────────────────────────────── */
+  --z-grain: 60;
+  --z-nav: 80;
+  --z-menu: 90;
+  --z-cursor: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: .01ms;
+    --dur: .01ms;
+    --dur-slow: .01ms;
+  }
+}

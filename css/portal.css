@@ -1,0 +1,245 @@
+/* ============================================================
+   PORTAL HERO
+   ------------------------------------------------------------
+   Two panels part outward to uncover the Skay Crafts mark while
+   the wordmark grows, its tracking tightens, and its two halves
+   travel to opposite edges.
+
+   EVERYTHING here is driven by ONE custom property, --p, which
+   js/portal.js sets from scroll POSITION (0 = closed, 1 = open).
+   Because it is position-bound rather than timed, the portal
+   closes again on the way back up, for free.
+
+   --p defaults to 1 (fully open). So with no JS, or under
+   prefers-reduced-motion where the script never binds, the
+   finished open state IS the rendered page.
+   ============================================================ */
+
+.portal {
+  --p: 1;
+  position: relative;
+  height: var(--portal-h);
+}
+
+.portal__stage {
+  /* True black behind the mark: the logo was drawn on black, so the
+     field and the artwork read as one surface. */
+  background: #000;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+}
+
+/* ── Layer 1 · the mark, settling from a slight overscale ──── */
+.portal__image {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: scale(calc(1.16 - .16 * var(--p)));
+  will-change: transform;
+}
+/* Shows the SC mark ALONE. Cropping at 69.6% of the file's height cuts in
+   the gap between the mark (ends y 387 of 589) and the "SKAY CRAFTS" band
+   (starts y 436), so both text bands are dropped — the wordmark is already
+   set at full size over the top, and the tagline would repeat it again.
+   The source file is not modified; other placements still show the lockup. */
+.portal__logo {
+  display: block;
+  width: min(62vw, 480px);
+  aspect-ratio: 1032 / 410;
+  overflow: hidden;
+  opacity: calc(.25 + .75 * var(--p));
+}
+.portal__logo img { display: block; width: 100%; }
+
+/* ── Layer 2 · radial veil, darkening the edges ────────────── */
+.portal__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 62% 58% at 50% 48%, transparent 20%, rgba(0, 0, 0, .78) 82%);
+}
+
+/* ── Layer 3 · the two panels ───────────────────────────────
+   Pinned to opposite edges and meeting in the middle, so the
+   hero begins CLOSED. They travel past their own width to
+   clear the frame entirely.                                   */
+/* The doors themselves are violet — the one moment the accent is allowed
+   to be a filled area, because it IS the opening. */
+.portal__panel {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: var(--panel-w);
+  background: linear-gradient(155deg, var(--dolphin), #4A4160 60%, var(--field-2));
+  will-change: transform;
+}
+.portal__panel--l {
+  left: 0;
+  transform: translateX(calc(var(--p) * -104%));
+  border-right: 1px solid var(--rule-accent);
+}
+.portal__panel--r {
+  right: 0;
+  transform: translateX(calc(var(--p) * 104%));
+  border-left: 1px solid var(--rule-accent);
+}
+
+/* ── Layer 4 · two accent dots travelling to opposite corners ── */
+.portal__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  will-change: transform;
+}
+.portal__dot--a {
+  background: var(--linen);
+  box-shadow: 0 0 16px rgba(253, 241, 226, .85);
+  transform: translate(calc(var(--p) * -34vw), calc(var(--p) * -30vh));
+}
+.portal__dot--b {
+  background: var(--accent);
+  box-shadow: 0 0 16px var(--accent-deep);
+  transform: translate(calc(var(--p) * 34vw), calc(var(--p) * 30vh));
+}
+
+/* ── Layer 5 · the portal title ─────────────────────────────
+   The signature move. Three things happen at once:
+     · the whole title scales UP
+     · its letter-spacing TIGHTENS
+     · the two halves travel to opposite edges
+   Growing and tightening together is the entire point — it
+   reads as a title opening rather than a plain zoom. Doing
+   either alone loses the effect.
+
+   The halves move by a percentage of their OWN width, so no
+   measurement is needed and it stays correct at every size. */
+.portal__title {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: .34em;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 800;
+  /* No-JS fallback only. js/portal.js measures the title and solves
+     for the size that spans 86% of the viewport when closed, so this
+     value is overridden inline on every JS-capable load. */
+  font-size: clamp(1.45rem, 8vw, 7rem);
+  line-height: 1;
+  color: var(--on-field);
+  /* Syne is wide, so it needs less tightening than a condensed face */
+  letter-spacing: calc(.04em - .075em * var(--p));
+  transform: scale(calc(1 + .3 * var(--p)));
+  will-change: transform, letter-spacing;
+  pointer-events: none;
+}
+.portal__title span { display: block; will-change: transform; }
+.portal__title span:first-child { transform: translateX(calc(var(--p) * -52%)); }
+.portal__title span:last-child  { transform: translateX(calc(var(--p) *  52%)); }
+
+/* ── Corner metadata, pinned to the stage edges ────────────── */
+.portal__meta {
+  position: absolute;
+  z-index: 3;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--on-field-2);
+  opacity: calc(.35 + .65 * var(--p));
+}
+.portal__meta--br {
+  bottom: 2.2rem;
+  right: var(--pad-x);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.portal__scrollLine {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: var(--rule-dark);
+  overflow: hidden;
+}
+.portal__scrollLine i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(var(--p));
+  transform-origin: 0 50%;
+}
+
+/* ── Below-portal intro band ───────────────────────────────── */
+.portal__after {
+  position: relative;
+  padding-block: clamp(3rem, 8vw, 6rem) var(--sec-y);
+  border-top: 1px solid var(--rule-soft);
+}
+.portal__afterGrid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+.portal__lead { max-width: 40ch; }
+.portal__cta { display: flex; gap: .7rem; flex-shrink: 0; }
+
+.portal__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  margin-top: clamp(2.2rem, 5vw, 3.4rem);
+  padding-top: clamp(1.4rem, 3vw, 2rem);
+  border-top: 1px solid var(--rule);
+}
+.portal__facts dt {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: .35rem;
+}
+.portal__facts dd {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+}
+
+/* ── Narrow screens ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .portal { --portal-h: 220svh; }
+  .portal__afterGrid { grid-template-columns: 1fr; align-items: start; }
+}
+@media (max-width: 560px) {
+  .portal__cta { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────
+   The script never binds, so --p stays 1 and the stage renders
+   fully open. Collapse the scroll length so there is no dead
+   space to scroll through.                                    */
+@media (prefers-reduced-motion: reduce) {
+  .portal { height: auto; }
+  .portal__stage { position: relative; height: 100svh; }
+  .portal__panel { display: none; }
+  .portal__image, .portal__title,
+  .portal__title span, .portal__dot { transform: none; }
+  .portal__logo { opacity: 1; }
+  .portal__title { letter-spacing: -.035em; }
+}
