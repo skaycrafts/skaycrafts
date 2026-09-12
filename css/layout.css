@@ -300,6 +300,41 @@
    FULLSCREEN MENU
    ============================================================ */
 
+
+/* ── Close control ──────────────────────────────────────────
+   The burger lives in .nav at z-index 80; the open menu is 90 and
+   covers it, so it is neither visible nor tappable while the menu
+   is up. Escape closes the menu but there is no Escape key on a
+   phone, which left tapping a nav link as the only way out.
+
+   This button is a child of .menu, so it always paints above the
+   overlay, and it is placed where the burger sits at rest —
+   (88px nav - 44px button) / 2 = 22px down, container padding in
+   from the right — so the control does not appear to jump when
+   the menu opens. js/nav.js finds it via [data-menu-close].      */
+.menu__close {
+  position: absolute;
+  top: calc(22px + var(--safe-t, 0px));
+  right: calc(var(--pad-x) + var(--safe-r, 0px));
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule-dark);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease-out);
+}
+.menu__close:hover { border-color: var(--rule-accent); }
+.menu__close span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1px;
+  background: var(--on-field);
+}
+.menu__close span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+.menu__close span:nth-child(2) { transform: translate(-50%, -50%) rotate(-45deg); }
+
 .menu {
   position: fixed;
   inset: 0;

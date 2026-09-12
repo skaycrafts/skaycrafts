@@ -108,6 +108,15 @@
 </header>
 
 <div class="menu" id="menu" hidden>
+  <!-- The burger sits in .nav (z-index 80) and the open menu covers it
+       (z-index 90), so it is neither visible nor clickable once the menu
+       is up. This close control lives INSIDE the overlay, positioned to
+       land exactly where the burger was, and is picked up automatically
+       by the focus trap in js/nav.js. -->
+  <button class="menu__close" type="button" aria-label="Close menu" data-menu-close>
+    <span></span><span></span>
+  </button>
+
   <nav class="menu__nav" aria-label="Mobile">
     <a href="#work"     data-menu-link><em>01</em><span>Work</span></a>
     <a href="#about"    data-menu-link><em>02</em><span>About</span></a>

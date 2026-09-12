@@ -93,6 +93,15 @@
 
     toggle.addEventListener('click', function () { setOpen(!open); });
 
+    /* The burger is buried under the overlay once the menu is open, so
+       the overlay carries its own close control. Without it the only
+       ways out are Escape — no such key on a phone — or following a
+       link, which forces you to navigate somewhere to dismiss it. */
+    var closeBtn = SK.$('[data-menu-close]', menu);
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () { setOpen(false); });
+    }
+
     SK.$$('a', menu).forEach(function (a) {
       a.addEventListener('click', function () { setOpen(false); });
     });
