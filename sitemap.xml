@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap — Skay Crafts
+
+  The site is a single page, so there is one URL. Section links such as
+  /#work or /#contact are deliberately not listed: search engines drop
+  everything after "#", so they would all resolve to this same page.
+
+  When a new page is added (e.g. /projects/hionwheels), add a <url>
+  block for it here, and update <lastmod> whenever a page's content
+  meaningfully changes.
+
+  BEFORE LAUNCH: skaycrafts.com is a placeholder domain. Replace it
+  here and in robots.txt with the real one — sitemap URLs must be
+  absolute and must match the domain the site is actually served from.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://skaycrafts.com/</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+</urlset>

@@ -1,0 +1,49 @@
+# robots.txt — Skay Crafts
+#
+# Open to every crawler: search engines, AI agents, assistants and
+# anything else. Nothing on this site is disallowed.
+#
+# "User-agent: *" already covers every bot. The AI crawlers are also
+# named individually below, so the intent is explicit: a bot that finds
+# a group with its own name follows that group instead of "*", and each
+# of these groups allows everything.
+#
+# Note: robots.txt is a public request, not access control. It does not
+# hide or protect any file — everything deployed here is public anyway.
+
+User-agent: *
+Allow: /
+
+# ── AI crawlers and agents ─────────────────────────────────────
+# OpenAI
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+# Anthropic
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+# Google (Gemini / AI training control)
+User-agent: Google-Extended
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+# Apple
+User-agent: Applebot
+User-agent: Applebot-Extended
+# Meta
+User-agent: meta-externalagent
+User-agent: FacebookBot
+# Common Crawl (feeds many AI datasets)
+User-agent: CCBot
+# Amazon, ByteDance, Cohere, DuckDuckGo, Mistral, You.com
+User-agent: Amazonbot
+User-agent: Bytespider
+User-agent: cohere-ai
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: YouBot
+Allow: /
+
+Sitemap: https://skaycrafts.com/sitemap.xml
