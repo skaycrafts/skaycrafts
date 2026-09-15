@@ -35,10 +35,16 @@ body.is-locked { overflow: hidden; height: 100%; }
 
    `paper-tile.jpg` is a mirrored 2x2 block built from the source
    photograph, so its edges match on all four sides and it repeats
-   with no seam anywhere. The `.png` after it is the output path of
-   `node tools/make-seamless.js`, listed so regenerating the tile
-   that way also just works. If neither file exists the flat Linen
-   ground shows through and nothing breaks.
+   with no seam anywhere.
+
+   Only the file that actually exists is listed. A second URL as a
+   "fallback" does not work the way it reads: CSS layers every
+   background-image it is given rather than picking the first that
+   loads, so a missing one is simply a 404 on every page load for
+   every visitor. If you regenerate the tile as a .png via
+   tools/make-seamless.js, change the path here — do not add it
+   alongside. If the file is absent the flat Linen ground shows
+   through and nothing breaks.
 
    z-index -1 keeps it under the content, so it tints the ground
    and never the type sitting on it. multiply lets the texture
@@ -49,9 +55,7 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    url('../assets/paper-tile.jpg'),
-    url('../assets/paper-tile.png');
+  background-image: url('../assets/paper-tile.jpg');
   background-repeat: repeat;
   background-size: var(--paper-tile) auto;
   background-position: center top;
