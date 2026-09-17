@@ -9,6 +9,10 @@
    at two columns on a phone.
    ============================================================ */
 
+/* There is no hero here, so the fixed nav sits straight over the top
+   of the page. Clear it (bar is ~89px tall) so the back link shows. */
+.allwork { padding-top: calc(90px + clamp(1rem, 3vw, 2rem)); }
+
 .workgrid {
   display: grid;
   /* Two across on a phone, as asked. The cards are deliberately
@@ -119,6 +123,24 @@ a.workcard__link:hover .workcard__url { color: var(--accent-deep); }
   inset: 0;
   padding: clamp(.7rem, 2.2vw, 1.1rem);
 }
+
+/* Small pill back to the homepage, above the section header. */
+.backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-bottom: clamp(1.2rem, 3vw, 2rem);
+  padding: .4rem .85rem .4rem .6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.backlink:hover { border-color: var(--ink); color: var(--accent-deep); }
+.backlink:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
 
 .allwork__foot {
   display: flex;

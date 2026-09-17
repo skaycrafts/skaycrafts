@@ -51,7 +51,10 @@
     }
 
     measure();
+    var lastW = window.innerWidth;
     window.addEventListener('resize', SK.debounce(function () {
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
       measure();
       current = target = progress() * distance;
       paint();

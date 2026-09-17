@@ -99,13 +99,18 @@
         dx = dy = 0;
 
         card.classList.add('is-dragging');
-        card.setPointerCapture(e.pointerId);
+        if (e.pointerType === 'mouse') card.setPointerCapture(e.pointerId);
       });
 
       deck.addEventListener('pointermove', function (e) {
         if (!dragging) return;
         dx = e.clientX - startX;
         dy = e.clientY - startY;
+
+        /* On touch the page owns vertical movement (touch-action: pan-y).
+           Only follow sideways, or the card bobs up and down while the
+           reader is simply scrolling past it. */
+        if (e.pointerType !== 'mouse') dy = 0;
 
         top().style.transform =
           'translate3d(' + dx + 'px,' + dy + 'px,0) rotate(' + (dx * ROT_PER_PX) + 'deg) scale(1.02)';

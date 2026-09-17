@@ -298,7 +298,12 @@
   .portal__facts {
     margin-top: 1.6rem;
     padding-top: 1.1rem;
+    /* All four stats on one line: equal columns instead of wrapping. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .5rem;
   }
+  .portal__facts dt { font-size: .62rem; letter-spacing: .08em; }
 
   /* Intro band's top padding is set independently of --sec-y,
      so it did not come down with the rest. */

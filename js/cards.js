@@ -86,6 +86,7 @@
       }
 
       el.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return;
         var r = el.getBoundingClientRect();
         var cx = r.left + r.width / 2;
         var cy = r.top + r.height / 2;

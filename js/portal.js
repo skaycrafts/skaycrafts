@@ -58,7 +58,11 @@
 
     fitTitle();
     measure();
+    var lastW = window.innerWidth;
     window.addEventListener('resize', SK.debounce(function () {
+      // Phones fire resize when the address bar slides; ignore height-only changes.
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
       fitTitle();
       measure();
     }, 180));
