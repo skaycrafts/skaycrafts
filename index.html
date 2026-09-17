@@ -132,6 +132,57 @@
   }
 }
 </script>
+<!-- FAQPage schema. The questions and answers here must stay identical to
+     the visible FAQ section below; schema that does not match on-page
+     content is a guidelines violation, not a shortcut. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Skay Crafts do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We build software, websites, branding and design, digital solutions, SEO, marketing systems and AI-powered applications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you build custom software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We develop software around the specific workflow and requirements of each business."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with small businesses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We work with startups, local businesses and growing companies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you handle both development and marketing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Skay Crafts can provide development, SEO and digital marketing as part of one digital solution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you integrate AI into existing businesses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We can identify suitable workflows for automation and AI integration."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -273,7 +324,7 @@
     <dl class="portal__facts" data-reveal data-reveal-delay="3">
       <div><dt>Founded</dt><dd>2026</dd></div>
       <div><dt>Disciplines</dt><dd>Six</dd></div>
-      <div><dt>Projects</dt><dd>Six</dd></div>
+      <div><dt>Projects</dt><dd>Seven</dd></div>
       <div><dt>Approach</dt><dd>Custom<em class="ital">.</em></dd></div>
     </dl>
   </div>
@@ -295,11 +346,12 @@
       <div class="releases__copy">
         <p class="statement" data-split="words">Built, shipped, <em class="ital">running.</em></p>
         <p class="lead" data-reveal>
-          Six projects across hospitality, gaming, film and mobility — websites,
+          Seven projects across hospitality, gaming, film and mobility — websites,
           booking systems, business software and the marketing around them.
         </p>
         <div class="releases__btns" data-reveal data-reveal-delay="1">
           <a href="#contact" class="btn btn--solid" data-magnetic><span>Start a Project</span></a>
+          <a href="projects/" class="btn btn--line" data-magnetic><span>See all projects</span></a>
           <a href="#services" class="btn btn--line" data-magnetic><span>What We Build</span></a>
         </div>
       </div>
@@ -365,13 +417,25 @@
             </div>
           </article>
 
-          <!-- HiOnWheels is identity, vehicle collateral and campaign work —
-               not a product — so its card lists the deliverables rather than
-               showing a UI mock-up. There is no site to link and no capture to
-               take: the output is a logo, printed and applied graphics, and
-               the campaigns that run on them. -->
           <article class="deckcard">
-            <div class="deckcard__top"><span class="deckcard__no">05</span><span class="deckcard__tag">Automotive</span></div>
+            <div class="deckcard__top"><span class="deckcard__no">05</span><span class="deckcard__tag">Automotive · Chennai</span></div>
+            <div class="deckcard__art deckcard__art--shot screen--hionwheels-web">
+              <img class="deckcard__shot" src="assets/work/hionwheels-web.webp"
+                   alt="The HI on Wheels website homepage" width="900" height="600"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="deckcard__foot">
+              <h3 class="deckcard__name">HiOnWheels</h3>
+              <p class="deckcard__cat">Website · Luxury Pre-owned Cars</p>
+              <a class="deckcard__link" href="https://hionwheels.com/" target="_blank" rel="noopener">hionwheels.com<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <!-- HiOnWheels is identity, vehicle collateral and campaign work —
+               not a product — so this card lists the deliverables rather than
+               showing a capture. The website we built them is card 05. -->
+          <article class="deckcard">
+            <div class="deckcard__top"><span class="deckcard__no">06</span><span class="deckcard__tag">Automotive</span></div>
             <div class="deckcard__art screen--hionwheels">
               <span class="ui-brand">
                 <span class="ui-brand__mark">HiOnWheels</span>
@@ -394,9 +458,9 @@
 
           <!-- VAPR is not deployed yet, so it keeps the CSS mock-up instead of
                a capture and carries no link. Swap in an <img> the same way as
-               cards 01-04 once the domain is live. -->
+               cards 01-05 once the domain is live. -->
           <article class="deckcard">
-            <div class="deckcard__top"><span class="deckcard__no">06</span><span class="deckcard__tag">In production</span></div>
+            <div class="deckcard__top"><span class="deckcard__no">07</span><span class="deckcard__tag">In production</span></div>
             <div class="deckcard__art screen--vapr">
               <span class="ui-app">
                 <span class="ui-appbar"><s></s><i></i></span>
@@ -415,7 +479,7 @@
         <div class="deck__meta">
           <p class="deck__hint"><span class="hint--pointer">Drag a card · or use arrow keys</span><span class="hint--touch">Swipe a card aside to browse</span></p>
           <div class="deck__dots" data-deck-dots aria-hidden="true">
-            <i class="is-on"></i><i></i><i></i><i></i><i></i><i></i>
+            <i class="is-on"></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
         </div>
       </div>

@@ -69,6 +69,9 @@
         var id = a.getAttribute('href');
         if (!id || id === '#') return;
 
+        /* Same guard as nav.js: "../#work" is a real link but not a
+           selector, so let the browser navigate instead of throwing. */
+        if (id.charAt(0) !== '#' || id.length < 2) return;
         var target = document.querySelector(id);
         if (!target) return;
 

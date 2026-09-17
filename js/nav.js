@@ -40,7 +40,16 @@
     /* ── Active section highlight ─────────────────────────── */
     var links = SK.$$('[data-nav-link]');
     var sections = links
-      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      /* Only same-page hashes are section targets. On a subpage the nav
+         points at "../#work", which is a valid URL but NOT a valid CSS
+         selector - passing it to querySelector throws a SyntaxError and
+         takes the rest of this module down with it. */
+      .map(function (a) {
+        var href = a.getAttribute('href') || '';
+        return href.charAt(0) === '#' && href.length > 1
+          ? document.querySelector(href)
+          : null;
+      })
       .filter(Boolean);
 
     if (sections.length && 'IntersectionObserver' in window) {

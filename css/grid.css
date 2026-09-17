@@ -1,0 +1,150 @@
+/* ============================================================
+   ALL-PROJECTS GRID  —  /projects/
+   ------------------------------------------------------------
+   Only this page needs these rules, so they live in their own
+   file rather than adding weight to every homepage load.
+
+   The homepage shows one project at a time in a swipeable deck.
+   Here every project is visible at once, side by side, starting
+   at two columns on a phone.
+   ============================================================ */
+
+.workgrid {
+  display: grid;
+  /* Two across on a phone, as asked. The cards are deliberately
+     compact so two fit a 375px screen without crushing the type. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(.7rem, 2.5vw, 1.6rem);
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.workcard { min-width: 0; }   /* lets grid children shrink instead of overflowing */
+
+.workcard__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  transition:
+    transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+a.workcard__link:hover {
+  transform: translateY(-4px);
+  border-color: var(--rule-accent);
+  box-shadow: var(--shadow-lift);
+}
+a.workcard__link:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 4px; }
+
+/* ── The capture ────────────────────────────────────────────
+   A fixed 3:2 window: the shots are different heights, and
+   without this the rows would ripple. screen--* supplies the
+   ground colour so a dark capture never flashes white while it
+   decodes.                                                     */
+.workcard__shot {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule-soft);
+  padding: clamp(.6rem, 2vw, 1rem);
+}
+.workcard__shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Anchored to the top: every capture puts the logo and headline in
+     its upper band, so a crop should lose the foot, never the masthead. */
+  object-position: 50% 0;
+  padding: 0;
+}
+
+.workcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  padding: clamp(.75rem, 2.2vw, 1.1rem);
+  /* Pushes the URL to the bottom edge so the strap lines up across a
+     row even when names wrap to two lines. */
+  flex: 1;
+}
+
+.workcard__no,
+.workcard__tag,
+.workcard__cat,
+.workcard__url {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+}
+.workcard__no  { color: var(--dolphin); }
+.workcard__tag { color: var(--ink-3); }
+.workcard__cat { color: var(--ink-3); margin-top: .1rem; }
+
+.workcard__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 3.4vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-top: .3rem;
+}
+
+.workcard__url {
+  margin-top: auto;
+  padding-top: .7rem;
+  color: var(--ink-2);
+  word-break: break-all;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a.workcard__link:hover .workcard__url { color: var(--accent-deep); }
+
+/* Cards with no live site get no pointer affordance. */
+.workcard--nolink .workcard__link { cursor: default; }
+
+/* The CSS mock-ups were drawn for the deck's own padding; inside the
+   fixed 3:2 window they need their own breathing room. */
+.workcard__shot .ui-brand,
+.workcard__shot .ui-app {
+  position: absolute;
+  inset: 0;
+  padding: clamp(.7rem, 2.2vw, 1.1rem);
+}
+
+.allwork__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  border-top: 1px solid var(--rule);
+}
+
+/* ── Wider screens ──────────────────────────────────────────
+   Three across from tablet up. Beyond that the cards would get
+   wider than their captures are sharp, so the grid stops at
+   three and the container's max-width does the rest.          */
+@media (min-width: 760px) {
+  .workgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Two columns hold all the way down. At 375px that is ~160px per card,
+   which is tight but readable because the body type steps down with it
+   rather than the column dropping away - showing every project side by
+   side is the whole point of this page. */
+@media (max-width: 420px) {
+  .workgrid { gap: .55rem; }
+  .workcard__body { padding: .6rem .55rem .7rem; }
+  .workcard__name { font-size: 1rem; }
+  .workcard__cat,
+  .workcard__url { font-size: .62rem; letter-spacing: .08em; }
+  .workcard__url { word-break: break-all; padding-top: .5rem; }
+}

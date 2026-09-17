@@ -19,6 +19,7 @@ Skay Crafts works with startups, local businesses and growing companies. It buil
 - [CornerStay](https://cornerstay.vercel.app/): serviced apartments in Coimbatore. Website and booking system.
 - [The Roost](https://theroost-production.up.railway.app/): boutique stay in Nungambakkam, Chennai. Website and technology solutions.
 - [Farook J Basha](https://farookjbashadop.com/): portfolio website for a cinematographer and director of photography.
+- [HiOnWheels](https://hionwheels.com/): luxury pre-owned car dealership in Chennai. Website.
 - HiOnWheels: automotive brand. Logo design, vehicle graphics (name boards, stickering, car badges) and digital marketing.
 - VAPR: in development.
 

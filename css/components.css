@@ -190,6 +190,10 @@
   background: #000;
 }
 .screen--vapr       { --brand: var(--accent-deep); background: linear-gradient(165deg, #1e1236, #0a0a0d 70%); }
+.screen--hionwheels-web {
+  --brand: #D9A441;                                   /* hionwheels.com gold */
+  background: #1b1a17;
+}
 .screen--hionwheels { --brand: var(--accent-deep); background: linear-gradient(155deg, #150f24, #0a0a0d 66%); }
 
 /* ── Brand sheet ────────────────────────────────────────────
