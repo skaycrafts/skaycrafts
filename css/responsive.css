@@ -150,7 +150,7 @@
   .contact__btns { flex-direction: column; align-items: flex-start; }
 
   .device--phone { width: min(72%, 200px); }
-  .contact__info { flex-direction: column; gap: 1.5rem; }
+  .contact__info { flex-direction: column; gap: 1rem; }
 }
 
 /* ── Coarse pointers: no hover-only affordances ────────────── */
@@ -563,4 +563,15 @@
 
   /* The head row no longer has a second item to space against. */
   .about__panelHead { padding: .8rem 1rem; }
+}
+
+/* ── Contact details on touch ───────────────────────────────
+   Each link already carries ~11px of tap padding above and below,
+   so the column gap and the label spacing were stacking on top of
+   it and left the phone numbers floating apart. The hit area stays
+   44px; only the doubled-up space goes. */
+@media (pointer: coarse), (max-width: 720px) {
+  .ci { gap: 0; }
+  .ci__k { margin-bottom: -.4rem; }
+  .contact__info { gap: .5rem; }
 }

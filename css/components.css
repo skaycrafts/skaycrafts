@@ -505,7 +505,7 @@
   font-size: .98rem;
   transition: border-color var(--dur-fast) var(--ease-out);
 }
-.field textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+.field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
 
 .field select {
   appearance: none;
@@ -552,19 +552,20 @@
   letter-spacing: .06em;
   color: #ff8fa0;
   opacity: 0;
-  height: 1.4rem;
-  padding-top: .3rem;
+  height: 0;
+  overflow: hidden;
   transition: opacity var(--dur-fast) var(--ease-out);
 }
-.field.has-error .field__err { opacity: 1; }
+/* Space for the message only opens when there is one to show. */
+.field.has-error .field__err { opacity: 1; height: auto; padding-top: .3rem; }
 
 .form__foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: .9rem 1.5rem;
-  margin-top: 2rem;
+  gap: .6rem 1.5rem;
+  margin-top: 1.5rem;
 }
 .form__hint {
   font-family: var(--font-mono);
@@ -573,9 +574,9 @@
   color: var(--ink-3);
 }
 .form__status {
-  margin-top: 1rem;
-  padding: .9rem 1.1rem;
-  border: 1px solid var(--rule);
+  margin-top: 0;
+  padding: 0 1.1rem;
+  border: 0 solid var(--rule);
   font-size: .86rem;
   text-align: center;
   opacity: 0;
@@ -583,6 +584,6 @@
   overflow: hidden;
   transition: opacity var(--dur) var(--ease-out), max-height var(--dur) var(--ease-out);
 }
-.form__status.is-shown { opacity: 1; max-height: 200px; }
+.form__status.is-shown { opacity: 1; max-height: 200px; margin-top: 1rem; padding-block: .9rem; border-width: 1px; }
 .form__status.is-ok { border-color: var(--rule-accent); background: var(--fill-accent); color: var(--ink); }
 .form__status.is-bad { border-color: rgba(255, 107, 129, .35); background: rgba(255, 107, 129, .07); color: #ff9fae; }
