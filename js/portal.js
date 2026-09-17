@@ -82,8 +82,12 @@
       return SK.clamp(-rect.top / travel, 0, 1);
     }
 
+    var painted = '';
     function paint() {
-      portal.style.setProperty('--p', current.toFixed(4));
+      var v = current.toFixed(4);
+      if (v === painted) return;       // unchanged: skip the style recalc
+      painted = v;
+      portal.style.setProperty('--p', v);
     }
 
     SK.tick(function () {

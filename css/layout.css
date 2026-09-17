@@ -210,7 +210,7 @@
 }
 .mark.is-missing img { display: none; }
 .mark.is-missing .mark__fallback { display: grid; }
-.nav__brand:hover .mark { transform: scale(1.05); }
+@media (hover: hover) { .nav__brand:hover .mark { transform: scale(1.05); } }
 
 .nav__wordmark { display: flex; flex-direction: column; gap: 3px; line-height: 1; }
 .nav__name {
@@ -261,12 +261,12 @@
   transform-origin: 0 50%;
   transition: transform var(--dur) var(--ease-out);
 }
-.nav__links a:hover,
 .nav__links a.is-active { color: var(--on-field); }
-.nav__links a:hover i,
+@media (hover: hover) { .nav__links a:hover { color: var(--on-field); } }
 .nav__links a.is-active i { opacity: 1; transform: translateY(0); }
-.nav__links a:hover::after,
+@media (hover: hover) { .nav__links a:hover i { opacity: 1; transform: translateY(0); } }
 .nav__links a.is-active::after { transform: scaleX(1); }
+@media (hover: hover) { .nav__links a:hover::after { transform: scaleX(1); } }
 
 .nav__actions { display: flex; align-items: center; gap: 1rem; }
 
@@ -323,7 +323,7 @@
   cursor: pointer;
   transition: border-color var(--dur) var(--ease-out);
 }
-.menu__close:hover { border-color: var(--rule-accent); }
+@media (hover: hover) { .menu__close:hover { border-color: var(--rule-accent); } }
 .menu__close span {
   position: absolute;
   top: 50%;
@@ -376,7 +376,7 @@
   letter-spacing: .16em;
   color: var(--accent);
 }
-.menu__nav a:hover { color: var(--accent); }
+@media (hover: hover) { .menu__nav a:hover { color: var(--accent); } }
 
 .menu__foot {
   display: flex;
@@ -385,7 +385,7 @@
   font-size: .88rem;
   color: var(--on-field-2);
 }
-.menu__foot a:hover { color: var(--accent); }
+@media (hover: hover) { .menu__foot a:hover { color: var(--accent); } }
 
 /* ============================================================
    FOOTER
@@ -430,8 +430,8 @@
   transform-origin: 0 50%;
   transition: transform var(--dur) var(--ease-out);
 }
-.footer__nav a:hover { color: var(--accent); }
-.footer__nav a:hover::after { transform: scaleX(1); }
+@media (hover: hover) { .footer__nav a:hover { color: var(--accent); } }
+@media (hover: hover) { .footer__nav a:hover::after { transform: scaleX(1); } }
 
 .footer .linkrule { color: var(--on-field); }
 .footer .linkrule__line { background: var(--rule-dark); }

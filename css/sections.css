@@ -57,7 +57,7 @@
   transition: background-color var(--dur) var(--ease-out);
 }
 .pillar:last-child { border-right: 0; }
-.pillar:hover { background: rgba(171, 146, 191, .09); }
+@media (hover: hover) { .pillar:hover { background: rgba(171, 146, 191, .09); } }
 .pillar__k {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
@@ -103,7 +103,7 @@
   transform-origin: 0 50%;
   transition: transform .6s var(--ease-out);
 }
-.svc:hover::after { transform: scaleX(1); }
+@media (hover: hover) { .svc:hover::after { transform: scaleX(1); } }
 
 .svc__num {
   font-family: var(--font-mono);
@@ -113,7 +113,7 @@
   padding-top: .6rem;
   transition: color var(--dur) var(--ease-out);
 }
-.svc:hover .svc__num { color: var(--dolphin); }
+@media (hover: hover) { .svc:hover .svc__num { color: var(--dolphin); } }
 
 .svc__title {
   font-family: var(--font-display);
@@ -123,7 +123,7 @@
   line-height: 1;
   transition: transform .5s var(--ease-out);
 }
-.svc:hover .svc__title { transform: translateX(10px); }
+@media (hover: hover) { .svc:hover .svc__title { transform: translateX(10px); } }
 
 .svc__desc {
   grid-column: 3;
@@ -148,7 +148,7 @@
   color: var(--ink-3);
   transition: color var(--dur) var(--ease-out);
 }
-.svc:hover .svc__tags li { color: var(--dolphin); }
+@media (hover: hover) { .svc:hover .svc__tags li { color: var(--dolphin); } }
 
 /* ════════════════════════════════════════════════════════════
    05 · TECHNOLOGY — the stack, layer by layer
@@ -199,13 +199,13 @@
   transform-origin: 50% 0;
   transition: transform .5s var(--ease-out);
 }
-.layer:hover {
+@media (hover: hover) { .layer:hover {
   transform: translateX(6px);
   border-color: var(--rule-accent);
   box-shadow: var(--shadow-card);
   z-index: 1;
-}
-.layer:hover::before { transform: scaleY(1); }
+} }
+@media (hover: hover) { .layer:hover::before { transform: scaleY(1); } }
 
 .layer__no {
   font-family: var(--font-mono);
@@ -300,7 +300,7 @@
   transform-origin: 50% 0;
   transition: transform .6s var(--ease-out);
 }
-.step:hover::before { transform: scaleY(1); }
+@media (hover: hover) { .step:hover::before { transform: scaleY(1); } }
 
 .step__num {
   font-family: var(--font-edit);
@@ -311,7 +311,7 @@
   margin-bottom: .8rem;
   transition: color var(--dur) var(--ease-out);
 }
-.step:hover .step__num { color: var(--accent-deep); }
+@media (hover: hover) { .step:hover .step__num { color: var(--accent-deep); } }
 .step__title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; letter-spacing: -.03em; }
 .step__desc { font-size: .92rem; color: var(--ink-3); }
 
@@ -390,12 +390,12 @@
   transform-origin: 0 50%;
   transition: transform .55s var(--ease-out);
 }
-.founder:hover {
+@media (hover: hover) { .founder:hover {
   transform: translateY(-4px);
   border-color: var(--rule-accent);
   box-shadow: var(--shadow-lift);
-}
-.founder:hover::before { transform: scaleX(1); }
+} }
+@media (hover: hover) { .founder:hover::before { transform: scaleX(1); } }
 
 .founder__head {
   display: flex;
@@ -503,5 +503,5 @@
   word-break: break-word;
   transition: color var(--dur-fast) var(--ease-out);
 }
-a.ci__v:hover { color: var(--accent-deep); }
+@media (hover: hover) { a.ci__v:hover { color: var(--accent-deep); } }
 .ci__v--plain { color: var(--ink-3); font-size: .86rem; }

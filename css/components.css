@@ -88,14 +88,14 @@
   transform-origin: 0 50%;
   transition: transform .5s var(--ease-out);
 }
-.linkrule:hover .linkrule__line::after { transform: scaleX(1); }
+@media (hover: hover) { .linkrule:hover .linkrule__line::after { transform: scaleX(1); } }
 
 .link-underline {
   color: var(--dolphin);
   border-bottom: 1px solid currentColor;
   transition: color var(--dur-fast) var(--ease-out);
 }
-.link-underline:hover { color: var(--ink); }
+@media (hover: hover) { .link-underline:hover { color: var(--ink); } }
 
 /* ============================================================
    DEVICE MOCKUPS — pure CSS, no image assets
@@ -445,8 +445,8 @@
   letter-spacing: .08em;
   color: var(--dolphin);
 }
-.qa__q:hover,
 .qa.is-open .qa__q { color: var(--ink); }
+@media (hover: hover) { .qa__q:hover { color: var(--ink); } }
 
 .qa__icon {
   position: relative;

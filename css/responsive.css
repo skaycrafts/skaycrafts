@@ -120,7 +120,7 @@
   /* Stack layers go vertical: the tech list drops under the name */
   .layer { grid-template-columns: 2.2rem minmax(0, 1fr); }
   .layer__tech { grid-column: 2; justify-content: flex-start; max-width: none; }
-  .layer:hover { transform: none; }
+  @media (hover: hover) { .layer:hover { transform: none; } }
 
   /* A clean 2x2: Software | AI over Digital | Growth. The old
      :last-child rule spanned Growth across both columns, which
@@ -155,7 +155,7 @@
 
 /* ── Coarse pointers: no hover-only affordances ────────────── */
 @media (hover: none) {
-  .svc:hover .svc__title { transform: none; }
+  @media (hover: hover) { .svc:hover .svc__title { transform: none; } }
 }
 
 /* ── Print ─────────────────────────────────────────────────── */
@@ -574,4 +574,20 @@
   .ci { gap: 0; }
   .ci__k { margin-bottom: -.4rem; }
   .contact__info { gap: .5rem; }
+}
+
+/* ── Scrolling performance on touch devices ─────────────────
+   The film grain is an animated full-screen SVG noise layer at
+   2.5% opacity - invisible on a phone, but it repaints every
+   frame. The nav blur re-samples everything behind the bar on
+   each scroll step; the bar is near-opaque black, so a solid
+   fill looks the same. Both removed where they cost the most. */
+@media (pointer: coarse), (max-width: 900px) {
+  .grain { display: none; }
+  .nav,
+  .nav.is-stuck {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, .94);
+  }
 }

@@ -7,6 +7,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Taps fire immediately: no waiting to see if it's a double-tap zoom. */
+  touch-action: manipulation;
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
 }
@@ -49,9 +51,13 @@ body.is-locked { overflow: hidden; height: 100%; }
    z-index -1 keeps it under the content, so it tints the ground
    and never the type sitting on it. multiply lets the texture
    contribute its shading without shifting Linen's hue.          */
+body { position: relative; }
 body::before {
   content: "";
-  position: fixed;
+  /* absolute, not fixed: a fixed multiply layer is re-blended against the
+     whole page on every scroll frame, which is what made phones stutter.
+     Attached to the page it is painted once and scrolls with it. */
+  position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
@@ -79,7 +85,7 @@ ul, ol { list-style: none; }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--ground-3); }
 ::-webkit-scrollbar-thumb { background: var(--dolphin); }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); }
+@media (hover: hover) { ::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); } }
 
 :focus { outline: none; }
 :focus-visible {
