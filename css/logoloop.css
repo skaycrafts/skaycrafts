@@ -1,0 +1,103 @@
+/* ============================================================
+   LOGO LOOP — client marquee, directly above Selected Work
+   ------------------------------------------------------------
+   No panel, no border, no field. The row runs the full width of
+   the section and sits straight on the Linen ground, so it reads
+   as part of the page rather than as a widget dropped onto it.
+
+   The marks arrive as gold, white and black artwork on
+   transparent grounds, and in their own colours three of the
+   seven — The Roost and Dawood Decors in white, Farook J Basha
+   in ivory — barely register against Linen. brightness(0) drops
+   all of them to one silhouette, which the Linen under it warms
+   back up. The alpha channel is the only thing that survives,
+   which is why every mark reads at the same weight.
+   ============================================================ */
+
+.clients {
+  position: relative;
+  z-index: 1;               /* clears the section's bled ghost numeral */
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+/* ── The loop ───────────────────────────────────────────────
+   Full bleed: this block is a child of .section, not of
+   .container, and .section already carries overflow-x: clip. */
+.logoloop {
+  --logoloop-gap: clamp(3rem, 8vw, 7rem);
+  --logoloop-h: clamp(40px, 5.6vw, 62px);
+
+  position: relative;
+  overflow: hidden;
+
+  /* Masked rather than painted: a Linen gradient would cover the
+     paper texture (body::before sits below the content) and show
+     as a flat patch at each edge. Fading the marks themselves
+     leaves the ground untouched. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+.logoloop__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  user-select: none;
+}
+
+.logoloop__list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.logoloop__item {
+  flex: 0 0 auto;
+  margin-right: var(--logoloop-gap);
+}
+
+.logoloop__link {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-xs);
+}
+
+.logoloop__item img {
+  display: block;
+  height: calc(var(--logoloop-h) * var(--s, 1));
+  width: auto;
+  object-fit: contain;
+  opacity: .62;
+  filter: brightness(0);
+  -webkit-user-drag: none;
+  pointer-events: none;
+  transition:
+    opacity   var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+/* Height alone is the wrong yardstick: a lockup spends most of it on a
+   wordmark, a fine-line seal loses its detail long before a bold monogram
+   does. These push each mark back to the same optical weight. */
+.logoloop__item--lockup { --s: 1.34; }
+.logoloop__item--seal   { --s: 1.18; }
+.logoloop__item--bold   { --s: .92; }
+
+@media (hover: hover) {
+  .logoloop__item:hover img,
+  .logoloop__link:focus-visible img { opacity: 1; transform: scale(1.07); }
+}
+.logoloop__link:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: .6rem;
+}
+
+/* ── Opt-out ────────────────────────────────────────────────
+   The script never starts the loop under reduced motion; this
+   makes sure a half-measured track cannot be left off-centre. */
+@media (prefers-reduced-motion: reduce) {
+  .logoloop__track { transform: none !important; }
+  .logoloop__item img { transition: none; }
+}

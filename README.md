@@ -47,7 +47,7 @@ The logo and favicon are already in place — see [`assets/README.md`](assets/RE
 ```
 skaycrafts/
 ├── index.html          all markup, section by section
-├── assets/             logo + favicon
+├── assets/             logo, favicon, client marks
 ├── css/
 │   ├── tokens.css      colours, type scale, spacing, motion — the design system
 │   ├── base.css        reset, document, typography primitives
@@ -56,6 +56,7 @@ skaycrafts/
 │   ├── portal.css      the scroll-driven hero
 │   ├── deck.css        the throwable project deck
 │   ├── sections.css    one block per numbered section
+│   ├── logoloop.css    the client logo row above Selected Work
 │   ├── animations.css  keyframes, reveal states, reduced-motion opt-out
 │   └── responsive.css  breakpoints + print
 └── js/
@@ -66,6 +67,7 @@ skaycrafts/
     ├── deck.js         drag/throw + keyboard for the project deck
     ├── reveal.js       split text + scroll-triggered entrances
     ├── cards.js        3D tilt on mockups, magnetic buttons
+    ├── logoloop.js     seamless client logo marquee
     ├── process.js      pinned horizontal timeline
     ├── accordion.js    FAQ
     ├── form.js         validation + submission
@@ -162,6 +164,39 @@ Six projects are in the deck; four link out to live sites:
 Linked cards carry a `.deckcard__link` with `target="_blank" rel="noopener"`.
 Cards with no URL simply omit it. Dragging is suppressed over the link so the
 site stays clickable.
+
+**Adding a client logo.** The marquee sits between the opening section and
+Selected Work, so the marks land immediately before the projects they belong
+to. It is one authored `<ul class="logoloop__list">`; `js/logoloop.js` clones
+it until the copies overflow and translates the track by exactly one sequence
+width, so the seam never lands on screen. Add an `<li class="logoloop__item">`
+and that is all — the clone count, the wrap point and the hover pause
+re-measure themselves.
+
+The row is deliberately **full bleed and unpanelled**: it is a child of
+`.section`, not of `.container`, so it runs edge to edge on the Linen ground
+with no card, border or field behind it. The edges fade with `mask-image`
+rather than a painted gradient — the paper texture is `body::before` at
+`z-index: -1`, so anything opaque laid over the ground shows up as a flat
+patch.
+
+Export the mark to `assets/clients/` as WebP on a **transparent** ground,
+160px tall. The row drops every mark to one silhouette with `brightness(0)`,
+which is what lets gold, white and black artwork share a line — in their own
+colours three of the seven (The Roost and Dawood Decors in white, Farook J
+Basha in ivory) barely register against Linen. The alpha channel is the only
+thing that survives, so a logo baked onto a white rectangle will arrive as a
+white rectangle.
+
+Normalising on height alone leaves a stacked lockup looking half the weight of
+a bold monogram, so each item takes an optical-size modifier:
+`--lockup` (mark over a wordmark), `--seal` (fine-line roundel) or `--bold`
+(heavy monogram). Plain `.logoloop__item` is the neutral case.
+
+The container reads `data-speed` (px per second), `data-direction`
+(`left`/`right`) and `data-hover-speed` (`0` pauses). Under
+`prefers-reduced-motion` the loop is never started. Row height is
+`--logoloop-h` in `css/logoloop.css`.
 
 **Mockup colours are per-client, on purpose.** Each `.screen--*` sets its own
 `--brand` matching the real site — PlayZoo gold, CornerStay teal, The Roost
