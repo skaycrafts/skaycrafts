@@ -412,7 +412,6 @@
   .contact__big    { font-size: clamp(1.9rem, 8vw, 2.6rem); }     /* 41.6 -> ~30 */
   .menu__nav a     { font-size: clamp(1.4rem, 6.4vw, 1.75rem); }  /* 28   -> ~24 */
   .founder__name   { font-size: clamp(1.05rem, 4.6vw, 1.3rem); }  /* 20.8 -> ~17 */
-  .footer__wordmark{ font-size: clamp(2.6rem, 13vw, 3.5rem); }    /* 56   -> ~49 */
 }
 
 @media (max-width: 380px) {

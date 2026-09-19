@@ -446,10 +446,22 @@
   border-top: 1px solid var(--rule-dark-soft);
 }
 
-/* Oversized ghost wordmark bleeding off the bottom edge */
+/* Oversized ghost wordmark bleeding off the BOTTOM edge — the sides
+   are meant to land flush, not to clip.
+
+   13vw is measured, not chosen: "SKAY CRAFTS" in --font-brand at this
+   weight and tracking renders 7.55x its own font-size wide, so 100/7.55
+   = 13.24vw is the largest size that still fits the viewport. 13vw
+   leaves a hair of tolerance for a different fallback face. The old
+   15.5vw with a 15rem cap overflowed by 8% on a desktop and cut the
+   final S off.
+
+   No clamp: a floor in rem would overflow a narrow phone and a ceiling
+   in rem would stop it reaching the edges on a wide monitor. One
+   viewport unit fits at every width by construction. */
 .footer__wordmark {
   font-family: var(--font-brand);
-  font-size: clamp(3.5rem, 15.5vw, 15rem);
+  font-size: 13vw;
   font-weight: 600;
   letter-spacing: .04em;
   line-height: .78;
