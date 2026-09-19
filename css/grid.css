@@ -89,7 +89,7 @@ a.workcard__link:focus-visible { outline: 2px solid var(--accent-deep); outline-
   letter-spacing: var(--track-wide);
   text-transform: uppercase;
 }
-.workcard__no  { color: var(--dolphin); }
+.workcard__no  { color: var(--ink-3); }
 .workcard__tag { color: var(--ink-3); }
 .workcard__cat { color: var(--ink-3); margin-top: .1rem; }
 

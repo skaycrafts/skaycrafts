@@ -44,20 +44,20 @@
    Amethyst is NOT used as a button fill — Linen on Amethyst is 2.4:1
    and would fail contrast at button text sizes. */
 .btn--solid {
-  background: var(--ink);
-  color: var(--linen);
-  border: 1px solid var(--ink);
+  background: var(--fill-strong);
+  color: var(--on-fill-strong);
+  border: 1px solid var(--fill-strong);
 }
-.btn--solid::before { background: var(--dolphin); }
-@media (hover: hover) { .btn--solid:hover { color: var(--linen); border-color: var(--dolphin); } }
+.btn--solid::before { background: var(--accent-deep); }
+@media (hover: hover) { .btn--solid:hover { color: var(--on-fill-strong); border-color: var(--accent-deep); } }
 
 /* Line: hairline, filling with ink on hover */
 .btn--line {
   border: 1px solid var(--rule-strong);
   color: var(--ink);
 }
-.btn--line::before { background: var(--ink); }
-@media (hover: hover) { .btn--line:hover { color: var(--linen); border-color: var(--ink); } }
+.btn--line::before { background: var(--fill-strong); }
+@media (hover: hover) { .btn--line:hover { color: var(--on-fill-strong); border-color: var(--fill-strong); } }
 
 .btn:active { transform: translateY(1px); }
 
@@ -91,7 +91,7 @@
 @media (hover: hover) { .linkrule:hover .linkrule__line::after { transform: scaleX(1); } }
 
 .link-underline {
-  color: var(--dolphin);
+  color: var(--ink-3);
   border-bottom: 1px solid currentColor;
   transition: color var(--dur-fast) var(--ease-out);
 }
@@ -443,7 +443,7 @@
   font-size: .6rem;
   font-style: normal;
   letter-spacing: .08em;
-  color: var(--dolphin);
+  color: var(--ink-3);
 }
 .qa.is-open .qa__q { color: var(--ink); }
 @media (hover: hover) { .qa__q:hover { color: var(--ink); } }
@@ -535,7 +535,7 @@
 .field select:focus + label,
 .field select:valid + label {
   transform: translateY(-1.1rem) scale(.7);
-  color: var(--dolphin);
+  color: var(--ink-3);
 }
 
 .field input:focus,

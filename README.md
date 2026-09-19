@@ -54,9 +54,11 @@ skaycrafts/
 │   ├── layout.css      shell, nav, menu, footer, cursor, grain
 │   ├── components.css  buttons, rule-links, index, band, mockups, accordion, form
 │   ├── portal.css      the scroll-driven hero
-│   ├── deck.css        the throwable project deck
-│   ├── sections.css    one block per numbered section
-│   ├── logoloop.css    the client logo row above Selected Work
+│   ├── deck.css        the throwable deck — retired, kept for reference
+│   ├── sections.css    process, why, faq, contact
+│   ├── systems.css     positioning, what we build, case studies,
+│   │                   capabilities, industries
+│   ├── logoloop.css    the client logo row under the hero
 │   ├── animations.css  keyframes, reveal states, reduced-motion opt-out
 │   └── responsive.css  breakpoints + print
 └── js/
@@ -64,7 +66,7 @@ skaycrafts/
     ├── nav.js          sticky nav, active link, fullscreen menu
     ├── cursor.js       custom cursor (desktop only)
     ├── portal.js       drives --p on the hero from scroll position
-    ├── deck.js         drag/throw + keyboard for the project deck
+    ├── deck.js         drag/throw for the retired deck — no longer loaded
     ├── reveal.js       split text + scroll-triggered entrances
     ├── cards.js        3D tilt on mockups, magnetic buttons
     ├── logoloop.js     seamless client logo marquee
@@ -107,63 +109,82 @@ keep it coherent if you extend it:
 
 | | Hex | Role |
 |---|---|---|
-| Linen | `#FDF1E2` | page ground |
-| Dolphin | `#655A7C` | ink |
+| Obsidian | `#08080B` | the page ground |
+| Linen | `#FDF1E2` | the ink |
 | Amethyst | `#AB92BF` | accent |
 
-Everything else is a derived tint or shade of one of those three, so the whole
-page resolves to the same three hues. Nothing is hard-coded outside the tokens
-file.
+The site used to run ink-on-Linen with a black hero and footer. That split is
+gone: the black field the chrome lockup always needed now runs the whole page,
+and the cream is what sits on it. Same hues, inverted relationship.
 
-**Contrast is the constraint that shapes the palette.** Measured on Linen:
+Near-black rather than `#000`. Pure black flattens every rule and shadow to
+nothing and makes white type vibrate on OLED; `#08080B` leaves room for a
+surface above the ground (`--ground-2`) and one below it (`--ground-3`), which
+is what makes a panel read as a panel without a drop shadow.
+
+**Contrast**, measured on the ground:
 
 | Colour | Ratio | Safe for |
 |---|---|---|
-| `--ink` `#3A3349` | 10.8:1 | headings, body copy |
-| Dolphin | 5.7:1 | body, links, small labels |
-| `--ink-3` `#6F6683` | 4.8:1 | muted 11px labels |
-| `--accent-deep` `#8F76A6` | 3.6:1 | **large display type only** |
-| Amethyst | 2.5:1 | **never text** — rules, dots, fills |
+| `--ink` `#F6F3EE` | 18.2:1 | headings, body copy |
+| `--ink-2` `#C4BECC` | 11.4:1 | secondary copy |
+| `--ink-3` `#9E98AB` | 7.6:1 | muted labels |
+| Amethyst | 7.2:1 | passes as text here |
 
-Amethyst is the brand accent but fails text contrast at every size, so it
-appears as rules, dots and fills, never as words. Where an accent must be read
-— the italic phrases, hover states — the deeper shade carries it. Do not
-lighten `--ink-3`; the site sets a lot of 11px uppercase type that drops under
-4.5:1 immediately.
+A dark ground is forgiving where the cream one was not — there is headroom at
+every tier, and Amethyst clears 4.5:1 for the first time. The constraint moves
+from legibility to restraint: the accent *can* carry words now, so the
+discipline is choosing not to let it carry many. It stays on rules, numbers,
+the `.ital` phrases and one link state.
 
-**The page has two grounds.** The hero stage, the nav, the fullscreen menu and
-the footer are black; the body is Linen. The dark parts are not decoration —
-the logo is chrome-on-black artwork and its silver bevels disappear on cream,
-so anywhere the lockup appears has to stay dark.
+**Depth comes from surfaces and hairlines, not shadows.** `--shadow-card` and
+`--shadow-lift` still resolve, but on near-black they are almost nothing. A
+raised block is raised because it is lighter than the ground and has a rule
+around it.
 
-Anything placed on the dark field uses `--on-field` / `--on-field-2` for type
-and `--rule-dark*` for hairlines. Anything on Linen uses the `--ink*` scale and
-plain `--rule*`. Mixing the two is the easiest way to produce unreadable text
-here, and it will not be obvious on a quick look — dark-plum ink on black still
-*renders*, it just sits at about 1.7:1.
+**The paper texture is off** (`--paper-strength: 0`). The embossed stone tile
+was what gave the cream its tooth; multiplied over near-black it only muddies
+the few pixels it reaches. `base.css` still draws it, at zero. The film grain
+in `layout.css` carries the texture now. Set the strength above 0 only if the
+ground ever goes light again.
+
+**One wash, very slow.** `--ground-wash` is a single wide radial of Amethyst at
+4.5% sitting under the whole page, fixed to the viewport. It exists so a flat
+`#08080B` does not read as a dead void on a large display. Keep it under 5% —
+a gradient anyone notices is the failure mode.
 
 **Content.** All copy lives in `index.html`, in numbered sections that match the
-comments (`01 · HERO`, `02 · ABOUT`, and so on).
+comments (`01 · POSITIONING`, `02 · WHAT WE BUILD`, and so on). The homepage
+runs hero → what we build → selected work → built for complexity → process →
+where we work → why → FAQ → start a project. Proof sits early on purpose: the
+client marks appear under the hero and the case studies are the third thing
+on the page, before any claim about capability.
 
-**Adding a project.** Copy an `<article class="deckcard">` block inside the
-deck in the Work section, renumber it, and add one more `<i>` to
-`[data-deck-dots]` so the progress dots still match. The deck adapts to any
-number of cards.
+**Adding a project.** Copy an `<article class="case">` block in the Work
+section. Each one carries the number, sector and place in the margin column,
+then the argument — what was built, what the system does, the stack it runs
+on — and the capture last, so a narrow viewport puts the words before the
+picture. Nothing needs renumbering elsewhere; there is no carousel state to
+keep in sync.
 
-Six projects are in the deck; four link out to live sites:
+Five projects are set out as case studies, all of them linking to the live
+site:
 
 | # | Project | Live at |
 |---|---------|---------|
-| 01 | PlayZoo | <https://playzoo.in/> |
-| 02 | CornerStay | <https://cornerstay.vercel.app/> |
-| 03 | The Roost | <https://theroost-production.up.railway.app/> |
-| 04 | Farook J Basha | <https://farookjbashadop.com/> |
-| 05 | Angson | — |
-| 06 | Gym Billing | — |
+| 01 | The Roost | <https://theroostsrh.com/> |
+| 02 | CornerStay | <https://cornerstay.in/> |
+| 03 | HiOnWheels | <https://hionwheels.com/> |
+| 04 | PlayZoo | <https://playzoo.in/> |
+| 05 | Farook J Basha | <https://farookjbashadop.com/> |
 
-Linked cards carry a `.deckcard__link` with `target="_blank" rel="noopener"`.
-Cards with no URL simply omit it. Dragging is suppressed over the link so the
-site stays clickable.
+**Two fields are deliberately missing from every case study**: the measurable
+outcome, and the specific third-party systems each build integrates. Those are
+the two things a serious prospect weighs most, and they are the two things
+nobody outside the project can write. Fill them in — a `The outcome` and a
+`The integrations` column alongside the existing two — and these become full
+case studies. Do not approximate them; an invented number is worth less than
+a missing one, and it is the one mistake this page cannot survive.
 
 **Adding a client logo.** The marquee sits between the opening section and
 Selected Work, so the marks land immediately before the projects they belong

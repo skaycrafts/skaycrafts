@@ -1,31 +1,46 @@
 # Skay Crafts
 
-> Skay Crafts is a software development and digital solutions company, founded on 16 April 2026 by Akshaya A and Syed Muhith Ibrahim R. It builds custom software, websites, brand identities, digital marketing, SEO and AI-powered systems for businesses. Tagline: "Building Beyond Limits."
+> Skay Crafts designs and builds digital systems — custom software, booking platforms, admin dashboards, integrations and automation — together with the digital experiences and brand systems around them. Founded on 16 April 2026 by Akshaya A and Syed Muhith Ibrahim R, based in Chennai, India, working globally. Tagline: "Building Beyond Limits."
 
-Skay Crafts works with startups, local businesses and growing companies. It builds each solution around a business's own workflow rather than a generic template, and handles development, design, SEO and marketing as one team.
+Skay Crafts works from the workflow back to the technology. Projects usually span more than one discipline: the software a business runs on, the experience its customers see, the integrations that connect the two, and the identity around all of it. Strategy, design, development, integration and deployment are handled by one team.
 
-## Services
+## What we build
 
-- **Software**: custom business software, including dashboards, billing and invoicing, booking systems, customer management and internal tools.
-- **Websites**: high-performance websites and web applications, including business sites, booking sites, portfolios, e-commerce and customer portals.
-- **Branding & Design**: logo and identity design, print collateral, signage and vehicle graphics such as name boards, stickering and car badges.
-- **Digital marketing**: social media marketing, paid campaigns, content and customer acquisition.
-- **SEO**: technical and on-page SEO, local SEO, and Google Business Profile setup and optimisation.
-- **AI & Automation**: AI-powered workflows, integrations and intelligent business tools.
+- **Digital systems**: custom platforms built around a business's own workflow — bookings, operations, billing, inventory, role-based admin, internal tools and SaaS products.
+- **Digital experiences**: websites and digital products designed to convert and to keep working as the business changes shape.
+- **Automation**: workflows and integrations that remove repetitive operational work, with AI applied where it removes real effort.
+- **Brand systems**: identity, collateral and signage across screen, print, premises and vehicle — including logo design, name boards, stickering and car badges.
+
+Digital growth work — SEO, local SEO, Google Business Profile, paid and social campaigns — is run alongside the build rather than handed to a separate agency.
+
+## Capabilities
+
+Custom software, admin systems, booking engines, internal tools, SaaS products, dashboards, payments, billing and POS, inventory, CRM, lead management, reporting, REST APIs, property and third-party system integration, webhooks, analytics, authentication and role-based access, cloud deployment, AI and automation.
+
+## Where we work
+
+- **Hospitality** — direct booking, guest experience, operational software. Evidence: The Roost, CornerStay.
+- **Retail and automotive** — stock-led websites, lead capture, CRM, physical identity. Evidence: HiOnWheels.
+- **Startups and SMEs** — custom software, internal platforms, SaaS, automation. Evidence: VAPR (in development).
+- **Professional practices** — web presence, enquiry workflows, business automation. Evidence: Farook J Basha.
 
 ## Projects
 
+- [The Roost](https://theroostsrh.com/): boutique stay in Nungambakkam, Chennai. Website, booking experience, enquiry management and operations support.
+- [CornerStay](https://cornerstay.in/): serviced apartments in Coimbatore. Website and booking system covering nightly, weekly and monthly stays.
+- [HiOnWheels](https://hionwheels.com/): luxury pre-owned car dealership in Chennai. Website and inventory presentation, plus brand identity, vehicle graphics and digital marketing.
 - [PlayZoo](https://playzoo.in/): indoor gaming and pickleball centre in Chennai. Website and digital marketing.
-- [CornerStay](https://cornerstay.vercel.app/): serviced apartments in Coimbatore. Website and booking system.
-- [The Roost](https://theroost-production.up.railway.app/): boutique stay in Nungambakkam, Chennai. Website and technology solutions.
-- [Farook J Basha](https://farookjbashadop.com/): portfolio website for a cinematographer and director of photography.
-- [HiOnWheels](https://hionwheels.com/): luxury pre-owned car dealership in Chennai. Website.
-- HiOnWheels: automotive brand. Logo design, vehicle graphics (name boards, stickering, car badges) and digital marketing.
+- [Farook J Basha](https://farookjbashadop.com/): portfolio for a cinematographer and director of photography.
 - VAPR: in development.
+- Dawood Decors: identity work.
+
+## Process
+
+Understand → Define → Design → Build → Connect → Scale. Business, customers, workflows and constraints first; architecture and product strategy second; UX, interface and brand third; then software, integrations and automation; then APIs, payments, property systems, CRM and analytics; then optimisation, support and future development.
 
 ## Technology
 
-React, Next.js, Node.js, Python, PostgreSQL, Supabase, REST APIs, cloud hosting, and AI-assisted development tools. The stack is chosen per project.
+React, Next.js, Node.js, Python, PostgreSQL, Supabase, REST APIs, cloud hosting, and AI-assisted development tools. The stack is chosen per project and is a consequence of the problem rather than the starting point.
 
 ## Contact
 
@@ -33,3 +48,4 @@ React, Next.js, Node.js, Python, PostgreSQL, Supabase, REST APIs, cloud hosting,
 - Phone: +91 78453 91992, +91 81100 75633
 - WhatsApp: https://wa.me/917845391992
 - Website: https://skaycrafts.com/
+- Location: Chennai, India · working globally

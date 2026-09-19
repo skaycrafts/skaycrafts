@@ -14,7 +14,10 @@ html {
 }
 
 body {
-  background: var(--ground);
+  background-color: var(--ground);
+  background-image: var(--ground-wash);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--fs-body);
@@ -80,12 +83,12 @@ button, input, select, textarea {
 button { cursor: pointer; }
 ul, ol { list-style: none; }
 
-::selection { background: var(--accent); color: var(--ink); }
+::selection { background: var(--accent); color: var(--on-fill-strong); }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--ground-3); }
-::-webkit-scrollbar-thumb { background: var(--dolphin); }
-@media (hover: hover) { ::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); } }
+::-webkit-scrollbar-thumb { background: rgba(246, 243, 238, .16); }
+@media (hover: hover) { ::-webkit-scrollbar-thumb:hover { background: var(--accent); } }
 
 :focus { outline: none; }
 :focus-visible {
@@ -187,7 +190,7 @@ ul, ol { list-style: none; }
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: .1em;
-  color: var(--dolphin);
+  color: var(--ink-3);
 }
 .sec__label {
   font-family: var(--font-mono);
@@ -220,7 +223,7 @@ ul, ol { list-style: none; }
   font-family: var(--font-edit);
   font-size: clamp(11rem, 34vw, 30rem);
   line-height: .74;
-  color: rgba(58, 51, 73, .05);
+  color: rgba(246, 243, 238, .045);
   pointer-events: none;
   user-select: none;
   z-index: 0;

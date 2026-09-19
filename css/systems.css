@@ -1,0 +1,446 @@
+/* ============================================================
+   SYSTEMS — the sections added in the repositioning
+   ------------------------------------------------------------
+   Everything here follows the rules already set in sections.css:
+   ruled, not boxed; numbers in the margin column; near-square
+   corners; the accent as a rule or a fill, never as a panel
+   behind words.
+
+   The one new idea is the case study. A project is not a card
+   with a screenshot on it — it is a claim about capability, so
+   it gets the width of the page, a stated system, the stack it
+   runs on and a link to the thing itself.
+   ============================================================ */
+
+/* ════════════════════════════════════════════════════════════
+   01 · POSITIONING — the block under the portal
+   ════════════════════════════════════════════════════════════ */
+
+/* The h1 sits in .creed (sections/portal.css). It is the page's
+   only h1, and it is the positioning line rather than the brand
+   name — the name is already the lockup above it. */
+.portal__sub {
+  max-width: 62ch;
+  margin-top: clamp(1.6rem, 3.5vw, 2.4rem);
+}
+
+/* SOFTWARE × DIGITAL × BRANDING, set as a measure rather than a
+   sentence. The × is a separator, not a character to read. */
+.disciplines {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2.4rem, 5vw, 3.6rem);
+  padding-top: clamp(1.4rem, 3vw, 2rem);
+  border-top: 1px solid var(--rule-soft);
+}
+.disciplines__set {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(.7rem, 1.6vw, 1.15rem);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(.95rem, 1.7vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.disciplines__set i {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--accent);
+  transform: translateY(-.04em);
+}
+.disciplines__where { margin: 0; }
+
+/* ════════════════════════════════════════════════════════════
+   02 · WHAT WE BUILD
+   ════════════════════════════════════════════════════════════ */
+.build__grid {
+  display: grid;
+  grid-template-columns: var(--margin-col) repeat(2, 1fr);
+  gap: 0;
+  margin-top: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--rule);
+}
+.buildcard {
+  grid-column: span 1;
+  padding: clamp(2rem, 4vw, 3.2rem) clamp(1.2rem, 3vw, 2.6rem) clamp(2.4rem, 5vw, 3.6rem) 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.buildcard:nth-child(odd)  { grid-column: 2; }
+.buildcard:nth-child(even) { grid-column: 3; padding-left: clamp(1.2rem, 3vw, 2.6rem); border-left: 1px solid var(--rule-soft); }
+.buildcard:nth-last-child(-n+2) { border-bottom: 0; }
+
+.buildcard__no {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  color: var(--accent);
+}
+.buildcard__title {
+  margin: .9rem 0 .8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+}
+.buildcard__desc {
+  max-width: 42ch;
+  font-size: .95rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+/* ════════════════════════════════════════════════════════════
+   03 · SELECTED WORK — case studies
+   ════════════════════════════════════════════════════════════ */
+.work__head {
+  display: grid;
+  grid-template-columns: var(--margin-col) 1.1fr .9fr;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: end;
+}
+.work__head .statement { grid-column: 2; max-width: 14ch; }
+.work__head .lead      { grid-column: 3; }
+
+.cases { margin-top: clamp(3.5rem, 8vw, 6rem); }
+
+/* Three tracks: the number column, the argument, the evidence.
+   The screenshot is last in the source so a narrow viewport puts
+   the words first — the image is support, not the headline. */
+.case {
+  display: grid;
+  grid-template-columns: var(--margin-col) minmax(0, 1fr) minmax(0, .92fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  padding: clamp(2.6rem, 6vw, 4.5rem) 0;
+  border-top: 1px solid var(--rule);
+}
+.case:last-child { border-bottom: 1px solid var(--rule); }
+
+.case__meta {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  padding-top: .35rem;
+}
+.case__no {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  color: var(--accent);
+}
+.case__sector,
+.case__place {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.case__place { color: var(--ink-dim); }
+
+.case__body { grid-column: 2; }
+.case__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: var(--track-tight);
+  line-height: 1.05;
+  color: var(--ink);
+}
+.case__line {
+  margin-top: .9rem;
+  max-width: 44ch;
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.case__cols {
+  display: grid;
+  grid-template-columns: minmax(150px, .7fr) 1.3fr;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  margin-top: clamp(1.6rem, 3.5vw, 2.4rem);
+  padding-top: clamp(1.4rem, 3vw, 1.9rem);
+  border-top: 1px solid var(--rule-soft);
+}
+.case__k {
+  display: block;
+  margin-bottom: .7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.case__list li {
+  font-size: .9rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+.case__p {
+  max-width: 48ch;
+  font-size: .93rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+/* The stack is evidence, so it is set like a spec line and not
+   like a row of badges. Hairline chips, no fill, no radius. */
+.case__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .5rem;
+  margin-top: clamp(1.3rem, 3vw, 1.9rem);
+}
+.case__stack li {
+  padding: .3rem .6rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xs);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.case__link {
+  display: inline-block;
+  margin-top: clamp(1.2rem, 2.5vw, 1.6rem);
+  padding-bottom: .15rem;
+  border-bottom: 1px solid var(--rule-accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .case__link:hover { color: var(--accent-deep); border-color: var(--accent-deep); }
+}
+
+.case__art {
+  grid-column: 3;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--ground-3);
+}
+.case__shot {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* The captures were taken against light chrome. A touch of
+     settling keeps them from glaring out of a near-black page
+     without washing the client's own colour out of them. */
+  opacity: .92;
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+@media (hover: hover) {
+  .case:hover .case__shot { opacity: 1; transform: scale(1.02); }
+}
+
+.work__more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.work__moreText {
+  max-width: 52ch;
+  font-size: .9rem;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+/* ════════════════════════════════════════════════════════════
+   04 · BUILT FOR COMPLEXITY
+   ════════════════════════════════════════════════════════════ */
+.stackmap__head {
+  display: grid;
+  grid-template-columns: var(--margin-col) 1.1fr .9fr;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: end;
+}
+.stackmap__head .statement { grid-column: 2; max-width: 15ch; }
+.stackmap__head .lead      { grid-column: 3; }
+
+/* Four columns divided by rules, read across as one system
+   rather than four cards sitting next to each other. */
+.stackmap__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--rule);
+}
+.capset {
+  padding: clamp(1.8rem, 3.5vw, 2.6rem) clamp(1rem, 2.2vw, 1.8rem) clamp(2rem, 4vw, 3rem) 0;
+  border-right: 1px solid var(--rule-soft);
+}
+.capset:first-child { padding-left: 0; }
+.capset:not(:first-child) { padding-left: clamp(1rem, 2.2vw, 1.8rem); }
+.capset:last-child { border-right: 0; }
+
+.capset__name {
+  margin-bottom: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.capset__list li {
+  position: relative;
+  padding: .42rem 0 .42rem .95rem;
+  font-size: .92rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+/* A tick in the accent rather than a bullet — it reads as an
+   inventory of what is available, which is what it is. */
+.capset__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .95em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+  opacity: .8;
+}
+
+/* ════════════════════════════════════════════════════════════
+   06 · WHERE WE WORK
+   ════════════════════════════════════════════════════════════ */
+.industries__list {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--rule);
+}
+.ind {
+  display: grid;
+  grid-template-columns: var(--margin-col) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, .6fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: baseline;
+  padding: clamp(1.6rem, 3.5vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--rule-soft);
+  transition: background-color var(--dur) var(--ease-out);
+}
+@media (hover: hover) { .ind:hover { background: var(--fill-soft); } }
+.ind__name {
+  grid-column: 2;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+}
+.ind__desc {
+  grid-column: 3;
+  font-size: .93rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.ind__proof {
+  grid-column: 4;
+  margin: 0;
+  text-align: right;
+  color: var(--ink-dim);
+}
+
+/* ════════════════════════════════════════════════════════════
+   07 · WHY — five, not four
+   ════════════════════════════════════════════════════════════ */
+.why__grid--five { grid-template-columns: repeat(5, 1fr); }
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+   Deliberately not a stack of the desktop layout: the margin
+   column collapses, the case study reorders so the argument
+   precedes the evidence, and the rules that divided columns
+   become rules that divide rows.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .stackmap__grid { grid-template-columns: repeat(2, 1fr); }
+  .capset:nth-child(2) { border-right: 0; }
+  .capset:nth-child(-n+2) { border-bottom: 1px solid var(--rule-soft); }
+  .why__grid--five { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .work__head,
+  .stackmap__head {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+  .work__head .statement, .work__head .lead,
+  .stackmap__head .statement, .stackmap__head .lead { grid-column: 1; max-width: 32ch; }
+
+  .build__grid { grid-template-columns: 1fr; }
+  .buildcard,
+  .buildcard:nth-child(odd),
+  .buildcard:nth-child(even) {
+    grid-column: 1;
+    padding: clamp(1.6rem, 5vw, 2.2rem) 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .buildcard:last-child { border-bottom: 0; }
+
+  /* Number row, then the argument, then the capture. */
+  .case {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .case__meta {
+    grid-column: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .5rem .9rem;
+    padding-top: 0;
+  }
+  .case__body, .case__art { grid-column: 1; }
+
+  .ind {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+  .ind__name, .ind__desc, .ind__proof { grid-column: 1; text-align: left; }
+  .ind__desc { max-width: 46ch; }
+}
+
+@media (max-width: 720px) {
+  .disciplines {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .8rem;
+  }
+  .case__cols { grid-template-columns: 1fr; gap: 1.4rem; }
+  .why__grid--five { grid-template-columns: repeat(2, 1fr); }
+  .work__more { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 560px) {
+  .stackmap__grid { grid-template-columns: 1fr; }
+  .capset {
+    padding: 1.4rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .capset:not(:first-child) { padding-left: 0; }
+  .capset:last-child { border-bottom: 0; }
+  .why__grid--five { grid-template-columns: 1fr; }
+}

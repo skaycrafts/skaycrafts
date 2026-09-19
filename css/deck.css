@@ -70,7 +70,7 @@
   letter-spacing: var(--track-wide);
   text-transform: uppercase;
 }
-.deckcard__no { color: var(--dolphin); }
+.deckcard__no { color: var(--ink-3); }
 .deckcard__tag { color: var(--ink-3); }
 
 .deckcard__art {

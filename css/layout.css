@@ -157,12 +157,12 @@
    black hero it reads as one surface; over the Linen body it reads as a
    deliberate band. Translucent + blurred so content shows through it. */
 .nav {
-  background: rgba(0, 0, 0, .82);
+  background: rgba(5, 5, 7, .78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
 .nav.is-stuck {
-  background: rgba(0, 0, 0, .9);
+  background: rgba(5, 5, 7, .94);
   border-bottom-color: var(--rule-dark-soft);
 }
 .nav.is-stuck .nav__inner { height: 64px; }

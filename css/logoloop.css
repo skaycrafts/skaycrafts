@@ -2,16 +2,18 @@
    LOGO LOOP — client marquee, directly above Selected Work
    ------------------------------------------------------------
    No panel, no border, no field. The row runs the full width of
-   the section and sits straight on the Linen ground, so it reads
-   as part of the page rather than as a widget dropped onto it.
+   the section and sits straight on the ground, so it reads as
+   part of the page rather than as a widget dropped onto it.
 
-   The marks arrive as gold, white and black artwork on
-   transparent grounds, and in their own colours three of the
-   seven — The Roost and Dawood Decors in white, Farook J Basha
-   in ivory — barely register against Linen. brightness(0) drops
-   all of them to one silhouette, which the Linen under it warms
-   back up. The alpha channel is the only thing that survives,
-   which is why every mark reads at the same weight.
+   The marks keep their own colour. On the old cream ground that
+   was impossible — white and ivory artwork disappeared, and a
+   filter strong enough to rescue them flattened the gold ones
+   too. On near-black the artwork carries itself: six of the
+   seven were drawn for a dark field. Only VAPR's seal is black
+   line work, and it takes .logoloop__item--invert.
+
+   Client marks are the one place another brand's colour is
+   allowed on this page. They are evidence, not decoration.
    ============================================================ */
 
 .clients {
@@ -69,8 +71,7 @@
   height: calc(var(--logoloop-h) * var(--s, 1));
   width: auto;
   object-fit: contain;
-  opacity: .62;
-  filter: brightness(0);
+  opacity: .78;
   -webkit-user-drag: none;
   pointer-events: none;
   transition:
@@ -81,6 +82,9 @@
 /* Height alone is the wrong yardstick: a lockup spends most of it on a
    wordmark, a fine-line seal loses its detail long before a bold monogram
    does. These push each mark back to the same optical weight. */
+/* Black line art on a black ground. One logo, one exception. */
+.logoloop__item--invert img { filter: invert(1); }
+
 .logoloop__item--lockup { --s: 1.34; }
 .logoloop__item--seal   { --s: 1.18; }
 .logoloop__item--bold   { --s: .92; }

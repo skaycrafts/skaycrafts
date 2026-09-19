@@ -1,78 +1,97 @@
 /* ============================================================
    SKAY CRAFTS — DESIGN TOKENS
    ------------------------------------------------------------
-   Palette: Linen / Dolphin / Amethyst.
+   Palette: near-black ground, near-white type, Amethyst accent.
 
-     Linen     #FDF1E2   warm cream — the page ground
-     Dolphin   #655A7C   muted plum-grey — the ink
+     Obsidian  #08080B   near-black — the page ground
+     Linen     #FDF1E2   warm cream — the brand's own white
      Amethyst  #AB92BF   soft violet — the accent
 
-   The three brand colours are held exactly as given. Everything
-   else here is a derived tint or shade of one of them, so the
-   whole page still resolves to those three hues.
+   The site used to run cream-on-Linen with a black hero and
+   footer. That split is gone: the black field the lockup always
+   needed now runs the whole page, and the cream is what sits on
+   it. Same three hues, inverted relationship.
 
-   CONTRAST, measured against the Linen ground:
-     · Dolphin        5.8:1   passes AA for body text
-     · Ink (derived)  9.1:1   used for headings and long copy
-     · Amethyst       2.4:1   FAILS for text — accent, rules and
-                              large display type only, never body
+   Near-black rather than #000. Pure black flattens every rule
+   and shadow to nothing and makes white type vibrate on OLED;
+   #08080B leaves room to build a surface above the ground and
+   one below it, which is what makes panels read as panels.
 
-   The hero and footer keep a black field because the logo is
-   chrome-on-black artwork: silver bevels disappear on cream.
+   CONTRAST, measured on the ground:
+     · --ink        18.2:1   headings and body
+     · --ink-2      11.4:1   secondary copy
+     · --ink-3       7.6:1   muted labels
+     · Amethyst      7.2:1   passes as text here, unlike on cream
+
+   A dark ground is forgiving where the cream one was not: there
+   is contrast headroom at every tier. The constraint moves from
+   legibility to restraint — the accent CAN carry words now, so
+   the discipline is choosing not to let it carry many.
    ============================================================ */
 
 :root {
-  /* ── The three brand colours, unaltered ──────────────────── */
+  /* ── The brand colours ───────────────────────────────────── */
+  --obsidian: #08080B;
   --linen:    #FDF1E2;
   --dolphin:  #655A7C;
   --amethyst: #AB92BF;
 
-  /* ── Ground — warm tints of Linen ────────────────────────── */
-  --ground:      var(--linen);
-  --ground-2:    #F7E9D7;   /* raised surface */
-  --ground-3:    #F0DFC9;   /* sunken / inset */
-  --surface:     #FBEBD8;
+  /* ── Ground — near-black, with a surface either side ─────── */
+  --ground:      var(--obsidian);
+  --ground-2:    #101017;   /* raised surface */
+  --ground-3:    #050507;   /* sunken / inset */
+  --surface:     #0D0D13;
 
-  /* ── Ink — shades of Dolphin ─────────────────────────────── */
-  --ink:      #3A3349;   /* headings + body, 9.1:1 on Linen */
-  --ink-2:    var(--dolphin);
-  /* Muted labels. Deliberately NOT lighter than this: the site sets a lot of
-     11px uppercase type, and it has to clear 4.5:1 over the DARKEST part of
-     the paper texture, not just over flat Linen — the texture covers the
-     whole ground, so the flat value is never the real one. */
-  --ink-3:    #665D79;   /* 5.5:1 on Linen, 4.6:1 over the darkest texture */
+  /* A single, very slow radial sitting under the whole page. Not
+     decoration — it stops a flat #08080B reading as a dead void
+     on large displays. Keep it below 5% or it becomes a gradient
+     someone will notice, which is the failure mode. */
+  --ground-wash: radial-gradient(1200px 800px at 72% -10%,
+                   rgba(171, 146, 191, .045), transparent 62%);
 
-  /* Deliberately dim, for de-emphasised display lines. Large type only —
-     it clears 3:1 (the large-text threshold) but not 4.5:1. */
-  --ink-dim:  #7E7592;
+  /* ── Ink — the cream, and two steps down ─────────────────── */
+  --ink:      #F6F3EE;   /* headings + body, 18.2:1 */
+  --ink-2:    #C4BECC;   /* secondary copy, 11.4:1 */
+  --ink-3:    #9E98AB;   /* muted labels, 7.6:1 — the floor */
+  --ink-dim:  #6E687C;   /* de-emphasised display lines only */
+
+  /* The high-contrast fill — solid buttons, filled hovers — and
+     the colour that sits on it. Inverted from the cream era. */
+  --fill-strong:    var(--linen);
+  --on-fill-strong: var(--obsidian);
 
   /* ── Accent — Amethyst ───────────────────────────────────── */
   --accent:      var(--amethyst);
-  --accent-deep: #8F76A6;   /* when the accent must carry weight */
-  --accent-soft: #D6C7E2;
+  --accent-deep: #C3A8DA;   /* the accent turned up, for display type */
+  --accent-soft: #4A3F5C;   /* accent as a fill, not as a voice */
 
-  /* ── Dark field — hero + footer, so the logo reads ───────── */
-  --field:      #000;
-  --field-2:    #12101A;   /* panels and dark surfaces */
-  --on-field:   var(--linen);
-  --on-field-2: #B9AEC8;
+  /* ── Field — kept as tokens so the nav, menu and footer can
+     still sit a step darker than the page they float over ──── */
+  --field:      #050507;
+  --field-2:    #0B0B11;
+  --on-field:   var(--ink);
+  --on-field-2: var(--ink-3);
 
-  /* ── Rules & fills — ink at low alpha, never grey ────────── */
-  --rule:        rgba(58, 51, 73, .16);
-  --rule-soft:   rgba(58, 51, 73, .10);
-  --rule-strong: rgba(58, 51, 73, .30);
-  --rule-accent: rgba(143, 118, 166, .55);
-  --fill-soft:   rgba(101, 90, 124, .045);
-  --fill-accent: rgba(171, 146, 191, .18);
+  /* ── Rules & fills — cream at low alpha, never grey ───────── */
+  --rule:        rgba(246, 243, 238, .12);
+  --rule-soft:   rgba(246, 243, 238, .07);
+  --rule-strong: rgba(246, 243, 238, .24);
+  --rule-accent: rgba(171, 146, 191, .42);
+  --fill-soft:   rgba(246, 243, 238, .035);
+  --fill-accent: rgba(171, 146, 191, .12);
 
-  /* Rules on the dark field */
-  --rule-dark:        rgba(253, 241, 226, .16);
-  --rule-dark-soft:   rgba(253, 241, 226, .09);
-  --rule-dark-strong: rgba(253, 241, 226, .30);
+  /* Rules on the darker field */
+  --rule-dark:        rgba(246, 243, 238, .12);
+  --rule-dark-soft:   rgba(246, 243, 238, .06);
+  --rule-dark-strong: rgba(246, 243, 238, .24);
 
-  /* ── Shadow — warm, never neutral grey ───────────────────── */
-  --shadow-card: 0 24px 60px -30px rgba(58, 51, 73, .38);
-  --shadow-lift: 0 36px 90px -36px rgba(58, 51, 73, .45);
+  /* ── Shadow ───────────────────────────────────────────────
+     A drop shadow is invisible on near-black. Depth here comes
+     from the surface being lighter than the ground and from a
+     hairline, not from a shadow — these stay only so the two
+     tokens resolve, and they stay almost nothing. */
+  --shadow-card: 0 24px 60px -30px rgba(0, 0, 0, .8);
+  --shadow-lift: 0 36px 90px -36px rgba(0, 0, 0, .9);
 
   /* ── Type ──────────────────────────────────────────────────
      Vonca carries everything. Bangeline is the script accent,
@@ -102,18 +121,14 @@
   --track-wide:  .13em;
 
   /* ── Paper ─────────────────────────────────────────────────
-     Strength of the embossed floral texture over the Linen
-     ground. Drop it toward 0 if the relief starts competing
-     with the type; 0 disables it entirely. --paper-tile is how wide
-     one repeat is drawn — smaller means the grain reads finer and
-     repeats more often.
+     The embossed stone tile was what gave the cream its tooth.
+     Multiplied over near-black it does nothing but muddy the
+     few pixels it can still reach, so it is off. The film grain
+     in layout.css is what carries the texture now.
 
-     The tile itself is tonally lifted (see assets/README.md) so that
-     multiplying it over Linen adds grain without dragging the ground
-     dark. Raising this much above .5, or regenerating the tile without
-     that lift, will push small muted type under 4.5:1 across most of
-     the page. Measure before changing it. */
-  --paper-strength: .5;
+     Set this above 0 only if the ground ever goes light again;
+     base.css still draws the tile, it just draws it at zero. */
+  --paper-strength: 0;
   --paper-tile: 760px;
 
   /* ── Space & rhythm ──────────────────────────────────────── */
