@@ -1,0 +1,213 @@
+/* ============================================================
+   LIGHTBOX — full-size viewing for work that is not a website
+   ------------------------------------------------------------
+   Some projects have no live URL to link to: the deliverable is
+   the artwork. A card for those opens the pieces at a size where
+   they can actually be read, rather than linking nowhere.
+
+   Built to the same rules as the fullscreen menu in layout.css —
+   it takes the whole viewport, locks the page behind it, traps
+   focus and closes on Escape — so there is one overlay
+   behaviour on the site rather than two.
+   ============================================================ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  background: var(--field);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease-out),
+              visibility 0s linear var(--dur);
+}
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.lightbox[hidden] { display: none; }
+
+/* ── Head ───────────────────────────────────────────────────
+   Title left, counter and close right, on one hairline. */
+.lightbox__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.6rem) var(--pad-x);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.lightbox__title {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  min-width: 0;
+}
+.lightbox__name {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+}
+.lightbox__sub { margin: 0; }
+
+.lightbox__tools {
+  display: flex;
+  align-items: center;
+  gap: clamp(.8rem, 2vw, 1.4rem);
+  flex-shrink: 0;
+}
+.lightbox__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.lightbox__close {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xs);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.lightbox__close span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 1px;
+  background: var(--ink);
+  transform-origin: 50% 50%;
+}
+.lightbox__close span:first-child { transform: translate(-50%, -50%) rotate(45deg); }
+.lightbox__close span:last-child  { transform: translate(-50%, -50%) rotate(-45deg); }
+@media (hover: hover) { .lightbox__close:hover { border-color: var(--rule-strong); } }
+
+/* ── Stage ──────────────────────────────────────────────────
+   One poster at a time, as large as the viewport allows. The
+   arrows sit outside it on desktop and fold under it on a
+   phone, where the swipe is the real control anyway. */
+.lightbox__stage {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(.6rem, 3vw, 2.4rem);
+  min-height: 0;
+  padding: clamp(1rem, 3vw, 2rem) var(--pad-x);
+}
+
+/* The image is absolutely placed inside a stretched box and left to
+   object-fit: contain. Sizing it with max-height: 100% instead looked
+   right but was not — a percentage height needs a definite parent to
+   resolve against, and a flex item sized by the flex algorithm is not
+   one, so a 1100x1557 poster rendered at full size and ran off the
+   bottom of a 900px viewport. */
+.lightbox__figure {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+.lightbox__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: lbIn var(--dur) var(--ease-out) both;
+}
+@keyframes lbIn {
+  from { opacity: 0; transform: scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Pinned to the edges of the stage at every width. In the flex row
+   they sat at the ends of a figure stretched to the full page, which
+   on a wide screen put them a long way from a portrait poster. */
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  background: rgba(5, 5, 7, .82);
+  color: var(--ink-2);
+  font-size: 1rem;
+  line-height: 1;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+[data-lb-prev] { left: clamp(.5rem, 2.5vw, 1.6rem); }
+[data-lb-next] { right: clamp(.5rem, 2.5vw, 1.6rem); }
+@media (hover: hover) {
+  .lightbox__nav:hover { border-color: var(--rule-strong); color: var(--ink); }
+}
+.lightbox__nav:disabled { opacity: .3; cursor: default; }
+
+/* ── Thumbs ─────────────────────────────────────────────────
+   The whole set stays visible, so the viewer can see how many
+   there are without stepping through to find out. */
+.lightbox__thumbs {
+  display: flex;
+  justify-content: center;
+  gap: .6rem;
+  padding: 0 var(--pad-x) clamp(1rem, 3vw, 1.8rem);
+}
+.lightbox__thumb {
+  width: 46px;
+  height: 64px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--r-xs);
+  opacity: .5;
+  transition: opacity var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.lightbox__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.lightbox__thumb.is-on { opacity: 1; border-color: var(--rule-accent); }
+@media (hover: hover) { .lightbox__thumb:hover { opacity: .85; } }
+
+/* ── The card that opens it ─────────────────────────────────
+   .workcard--nolink normally means "nothing to click". A card
+   with a gallery is clickable again, so the cursor and the
+   hover lift come back. */
+.workcard--gallery .workcard__link { cursor: pointer; width: 100%; text-align: left; }
+.workcard--gallery .workcard__more {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .55rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.workcard--gallery .workcard__more i {
+  font-style: normal;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .workcard--gallery:hover .workcard__more i { transform: translateX(3px); }
+}
+
+@media (max-width: 720px) {
+  .lightbox__stage { padding-inline: clamp(.75rem, 4vw, 1.25rem); }
+  .lightbox__nav { width: 40px; height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox__img { animation: none; }
+}

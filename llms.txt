@@ -23,6 +23,7 @@ Custom software, admin systems, booking engines, internal tools, SaaS products, 
 - **Retail and automotive** — stock-led websites, lead capture, CRM, physical identity. Evidence: HiOnWheels.
 - **Startups and SMEs** — custom software, internal platforms, SaaS, automation. Evidence: VAPR (in development).
 - **Professional practices** — web presence, enquiry workflows, business automation. Evidence: Farook J Basha.
+- **Interiors and furnishing** — brand identity, print collateral and campaign systems. Evidence: Dawood Decors.
 
 ## Projects
 
@@ -32,7 +33,7 @@ Custom software, admin systems, booking engines, internal tools, SaaS products, 
 - [PlayZoo](https://playzoo.in/): indoor gaming and pickleball centre in Chennai. Website and digital marketing.
 - [Farook J Basha](https://farookjbashadop.com/): portfolio for a cinematographer and director of photography.
 - VAPR: in development.
-- Dawood Decors: identity work.
+- Dawood Decors: fine upholstery and bespoke interiors, Chennai. Brand identity, print collateral and a repeatable campaign poster template.
 
 ## Process
 
