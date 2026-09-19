@@ -468,6 +468,12 @@
   text-align: center;
   white-space: nowrap;
   user-select: none;
-  margin-bottom: -.24em;
+  /* Cuts the mark at half its cap height. Measured, not eyeballed: at
+     this line-height the cap top sits .078em below the box top and the
+     baseline .80em below it, so the page edge has to land .34em above
+     the box bottom to take exactly half the letterform. -.24em showed
+     64% of it. Everything here is in em, so the crop holds at every
+     viewport width. */
+  margin-bottom: -.34em;
   color: rgba(253, 241, 226, .07);
 }
